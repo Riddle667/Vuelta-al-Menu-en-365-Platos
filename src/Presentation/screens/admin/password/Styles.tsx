@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { RegisterScreen } from '../register/RegisterScreen';
 
 export const styles = StyleSheet.create({
   container:{
@@ -11,6 +10,7 @@ export const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 20,
     transform: [{ translateY: -50 }],
+    width: '100%',
     height: '100%',
   },
   image: {

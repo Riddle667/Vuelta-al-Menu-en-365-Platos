@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, ScrollView, TextInput, TouchableOpacity, Image } from 'react-native';
 import { styles } from './Styles';
 
-export const RegisterScreen = () => {
+export const RegisterScreen = ({navigation}) => {
   return(
     <View style={styles.container}>
       <Image
