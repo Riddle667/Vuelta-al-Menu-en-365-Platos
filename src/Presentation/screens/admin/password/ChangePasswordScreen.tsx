@@ -41,7 +41,7 @@ export const ChangePasswordScreen = ({navigation}) => {
           style={styles.loginButton}
           onPress={() => navigation.navigate('AdminHomeScreen')}  
         >
-          <Text style={styles.loginButtonText}>INGRESAR</Text>
+          <Text style={styles.loginButtonText}>ACTUALIZAR DATOS</Text>
         </TouchableOpacity>
         <TouchableOpacity 
           onPress={() => navigation.navigate('RegisterScreen')}  
