@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { AdminHomeScreen } from './src/Presentation/screens/admin/home/AdminHomeScreen';
 import { ChangePasswordScreen } from './src/Presentation/screens/common/change_password/ChangePasswordScreen.tsx';
+import { CreateCategoryScreen } from './src/Presentation/screens/admin/category/create/CreateCategoryScreen.tsx';
 import FlashMessage from "react-native-flash-message";
 
 const Stack = createStackNavigator();
@@ -19,7 +20,8 @@ export default function App() {
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
         <Stack.Screen name="RegisterScreen" component={RegisterScreen} />      
         <Stack.Screen name="AdminHomeScreen" component={AdminHomeScreen} />      
-        <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen} />      
+        <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen} />   
+        <Stack.Screen name="CreateCategoryScreen" component={CreateCategoryScreen} />   
       </Stack.Navigator>
       <FlashMessage position="top" />
     </NavigationContainer>
