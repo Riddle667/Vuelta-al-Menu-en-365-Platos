@@ -7,8 +7,6 @@ export const CreateCategoryScreen = ({navigation}) => {
 
   const { name, description, image, onChange, selectImage, CreateCategory, errorsMessages } = useViewModel();
 
-  console.log("image: ", image);
-
   return(
     <View style={styles.container}>
       <View style={styles.form}>
@@ -38,6 +36,10 @@ export const CreateCategoryScreen = ({navigation}) => {
         >
           <Text style={styles.imageButtonText}>Seleccionar Imagen</Text>
         </TouchableOpacity>
+        <Image
+          style={styles.image}
+          source={{uri: (image == "") ? 'https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg' : image}}
+        />
         {errorsMessages.image && <Text style={styles.errorMessage}>{errorsMessages.image}</Text>}
         <TouchableOpacity 
           style={styles.button}
@@ -45,9 +47,6 @@ export const CreateCategoryScreen = ({navigation}) => {
         >
           <Text style={styles.buttonText}>Crear Categoría +</Text>
         </TouchableOpacity>
-        <Image
-          source={{uri: (image == "" ? "https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg" : image)}}
-        />
       </View>
     </View>
   )

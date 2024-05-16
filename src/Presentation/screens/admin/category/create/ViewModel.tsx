@@ -43,15 +43,15 @@ const CreateCategoryModel = () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-      aspect: [4, 3],
       quality: 1,
+      base64: true,
     });
 
     console.log(result);
 
     if (!result.canceled) {
       // const exists = await RNFS.exists(result.assets[0].uri);
-      setvalues({ ...values, ["image"]: result.assets[0].uri });
+      setvalues({ ...values, ["image"]: "data:image/png;base64," + result.assets[0].base64});
     } else {
       setvalues({ ...values, ["image"]: "123" });
     }

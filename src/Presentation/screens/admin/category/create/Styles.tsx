@@ -121,5 +121,13 @@ export const styles = StyleSheet.create({
     color: '#000000',
     textAlignVertical: 'top',
     textAlign: 'left',
+  },
+  image: {
+    width: 100,
+    height: 100,
+    zIndex: 1,
+    transform: [{ translateX: 140 }, { translateY: 15 }],
+    borderColor: "black",
+    borderWidth: 2,
   }
 });
