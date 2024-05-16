@@ -6,7 +6,8 @@ import React, { ReactElement } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { AdminHomeScreen } from './src/Presentation/screens/admin/home/AdminHomeScreen';
-import { ChangePasswordScreen } from './src/Presentation/screens/admin/password/ChangePasswordScreen';
+import { ChangePasswordScreen } from './src/Presentation/screens/common/change_password/ChangePasswordScreen.tsx';
+import FlashMessage from "react-native-flash-message";
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,7 @@ export default function App() {
         <Stack.Screen name="AdminHomeScreen" component={AdminHomeScreen} />      
         <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen} />      
       </Stack.Navigator>
+      <FlashMessage position="top" />
     </NavigationContainer>
   );
 }
