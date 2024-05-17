@@ -23,6 +23,7 @@ const RegisterStyles = StyleSheet.create({
     },
     formText: {
         fontWeight: 'bold',
+
         fontSize: 16,
     },
     formInput: {
@@ -63,12 +64,13 @@ const RegisterStyles = StyleSheet.create({
         width: 80,
         height: 80,
     },
-    logoText: {
+    logoText: { //titulo
         color: '#FFF',
         fontSize: 16,
         fontWeight: 'bold',
         textTransform: 'uppercase',
-        textAlign: 'center'
+        textAlign: 'center',
+        marginTop: 30
     },
     logoBack: {
         width: 80,

@@ -4,6 +4,7 @@ const Loginstyles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#000',
+
     },
     imageBackground: {
         bottom: 30,
@@ -13,20 +14,23 @@ const Loginstyles = StyleSheet.create({
     },
     form: {
         backgroundColor: '#FFF',
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
         padding: 30,
         position: 'absolute',
         bottom: 0,
         width: '100%'
+        
     },
     formText: {
         fontWeight: 'bold',
-        fontSize: 16
+        fontSize: 30,
+        textDecorationLine: 'underline'
     },
     formInput: {
         flexDirection: 'row',
-        marginTop: 30
+        marginLeft: 20,
+        marginTop: 20
     },
     formTextInput: {
         flex: 1,
@@ -50,7 +54,8 @@ const Loginstyles = StyleSheet.create({
     formIcon: {
         width: 30,
         height: 30,
-        marginTop: 10
+        marginTop: 10,
+        
     },
     logoContainer: {
         alignSelf: 'center',
@@ -62,12 +67,13 @@ const Loginstyles = StyleSheet.create({
         width: 200,
         height: 200
     },
-    logoText: {
+    logoText: {   //titulo
         color: '#FFF',
-        fontSize: 16,
+        fontSize: 20,
         fontWeight: 'bold',
         textTransform: 'uppercase',
-        textAlign: 'center'
+        textAlign: 'center',
+        marginTop: 40
     },
     errorText: {
         backgroundColor: '#ff7f7f',

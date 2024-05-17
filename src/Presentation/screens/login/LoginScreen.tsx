@@ -34,7 +34,7 @@ const LoginScreen = ({ navigation, route }: Props) => {
           showsHorizontalScrollIndicator={false}
         >
 
-          <Text style={styles.formText}>Inicio de Sesión</Text>
+          <Text style={styles.formText}>Iniciar Sesión</Text>
 
           {
             errorsResponse.length > 0 && (
