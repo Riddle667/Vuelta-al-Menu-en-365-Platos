@@ -4,7 +4,6 @@ const Loginstyles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#000',
-
     },
     imageBackground: {
         bottom: 30,
@@ -20,7 +19,6 @@ const Loginstyles = StyleSheet.create({
         position: 'absolute',
         bottom: 0,
         width: '100%'
-        
     },
     formText: {
         fontWeight: 'bold',
@@ -36,7 +34,10 @@ const Loginstyles = StyleSheet.create({
         flex: 1,
         borderBottomWidth: 1,
         borderBottomColor: '#EBEBEB',
-        marginLeft: 15
+        marginHorizontal: 20,
+        borderRadius: 30, // borde redondeado
+        backgroundColor: '#FF4141', //  color de fondo
+        color: 'white'
     },
     formLogin: {
         flexDirection: 'row',
@@ -55,7 +56,6 @@ const Loginstyles = StyleSheet.create({
         width: 30,
         height: 30,
         marginTop: 10,
-        
     },
     logoContainer: {
         alignSelf: 'center',
@@ -76,7 +76,7 @@ const Loginstyles = StyleSheet.create({
         marginTop: 40
     },
     errorText: {
-        backgroundColor: '#ff7f7f',
+        backgroundColor: '#FFA500',
         borderLeftWidth: 3,
         borderColor: '#993235',
         color: 'white',

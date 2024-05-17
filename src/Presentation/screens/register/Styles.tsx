@@ -23,23 +23,24 @@ const RegisterStyles = StyleSheet.create({
     },
     formText: {
         fontWeight: 'bold',
-
         fontSize: 16,
     },
     formInput: {
         flexDirection: 'row',
-        marginTop: 30
+        marginTop: 30,
     },
     formTextInput: {
         flex: 1,
-        borderBottomWidth: 1,
-        borderBottomColor: '#EBEBEB',
-        marginLeft: 15
+        backgroundColor: '#FF4141',
+        borderRadius: 30,
+        color: '#FFF',
+        marginHorizontal: 20,
+        paddingHorizontal: 10,
     },
     formRegister: {
         flexDirection: 'row',
         justifyContent: 'center',
-        marginTop: 30
+        marginTop: 30,
     },
     formRegisterText: {
         borderBottomColor: 'orange',
@@ -47,30 +48,30 @@ const RegisterStyles = StyleSheet.create({
         color: 'orange',
         fontStyle: 'italic',
         fontWeight: 'bold',
-        marginLeft: 10
+        marginLeft: 10,
     },
     formIcon: {
         width: 30,
         height: 30,
-        marginTop: 10
+        marginTop: 10,
     },
     logoContainer: {
         alignSelf: 'center',
         alignItems: 'center',
         position: 'absolute',
-        top: '5%'
+        top: '5%',
     },
     logo: {
         width: 80,
         height: 80,
     },
-    logoText: { //titulo
+    logoText: {
         color: '#FFF',
         fontSize: 16,
         fontWeight: 'bold',
         textTransform: 'uppercase',
         textAlign: 'center',
-        marginTop: 30
+        marginTop: 30,
     },
     logoBack: {
         width: 80,
@@ -99,7 +100,7 @@ const RegisterStyles = StyleSheet.create({
         borderRadius: 10,
         marginTop: 10,
         padding: 10,
-    }
+    },
 });
 
 export default RegisterStyles;

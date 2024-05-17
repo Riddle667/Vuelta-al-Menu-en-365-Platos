@@ -1,6 +1,6 @@
 
 export const CustomColors = {
-    primary: '#D24545',
+    primary: '#FF4141',
     secondary: '#A94438',
     background: '#EEEEEE'
 }

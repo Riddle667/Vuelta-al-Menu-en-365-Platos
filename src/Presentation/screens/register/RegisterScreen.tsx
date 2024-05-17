@@ -93,7 +93,6 @@ export const RegisterScreen = ({ navigation, route }: Props) => {
             </View>
 
             <View style={{ ...styles.form, height: '75%' }}>
-                <Text style={styles.formText}>Registrarse</Text>
                 <ScrollView
                     showsVerticalScrollIndicator={false}
                     showsHorizontalScrollIndicator={false}
@@ -109,6 +108,8 @@ export const RegisterScreen = ({ navigation, route }: Props) => {
                         <TextInput
                             style={styles.formTextInput}
                             placeholder={'Nombres'}
+                            placeholderTextColor={'#FFF'}
+                            textAlign='center'
                             keyboardType='default'
                             value={name}
                             onChangeText={text => onChange('name', text)}
@@ -130,6 +131,8 @@ export const RegisterScreen = ({ navigation, route }: Props) => {
                         <TextInput
                             style={styles.formTextInput}
                             placeholder={'Apellidos'}
+                            placeholderTextColor={'#FFF'}
+                            textAlign='center'
                             keyboardType='default'
                             value={lastName}
                             onChangeText={text => onChange('lastName', text)}
@@ -151,6 +154,8 @@ export const RegisterScreen = ({ navigation, route }: Props) => {
                         <TextInput
                             style={styles.formTextInput}
                             placeholder={'Correo electronico'}
+                            placeholderTextColor={'#FFF'}
+                            textAlign='center'
                             keyboardType='default'
                             value={email}
                             onChangeText={text => onChange('email', text)}
@@ -171,6 +176,8 @@ export const RegisterScreen = ({ navigation, route }: Props) => {
                         <TextInput
                             style={styles.formTextInput}
                             placeholder={'Telefóno'}
+                            placeholderTextColor={'#FFF'}
+                            textAlign='center'
                             keyboardType='number-pad'
                             value={phone}
                             onChangeText={text => onChange('phone', text)}
@@ -191,6 +198,8 @@ export const RegisterScreen = ({ navigation, route }: Props) => {
                         <TextInput
                             style={styles.formTextInput}
                             placeholder={'Contraseña'}
+                            placeholderTextColor={'#FFF'}
+                            textAlign='center'
                             keyboardType='default'
                             value={password}
                             onChangeText={text => onChange('password', text)}
@@ -212,6 +221,8 @@ export const RegisterScreen = ({ navigation, route }: Props) => {
                         <TextInput
                             style={styles.formTextInput}
                             placeholder={'Confirmar contraseña'}
+                            placeholderTextColor={'#FFF'}
+                            textAlign='center'
                             keyboardType='default'
                             value={confirmPassword}
                             onChangeText={text => onChange('confirmPassword', text)}
@@ -226,7 +237,7 @@ export const RegisterScreen = ({ navigation, route }: Props) => {
                 </ScrollView>
                 <View style={{ marginTop: 35 }}>
                     <RoundedButton
-                        text='Registrar'
+                        text='Confirmar'
                         onPress={register}
                     />
                 </View>

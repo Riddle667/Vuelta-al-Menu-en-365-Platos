@@ -72,6 +72,8 @@ const LoginScreen = ({ navigation, route }: Props) => {
             <TextInput
               style={styles.formTextInput}
               placeholder={'Ingrese su email'}
+              placeholderTextColor={'#FFF'}
+              textAlign='center'
               keyboardType='default'
               value={email}
               onChangeText={text => onChange('email', text)}
@@ -91,6 +93,8 @@ const LoginScreen = ({ navigation, route }: Props) => {
             <TextInput
               style={styles.formTextInput}
               placeholder={'******'}
+              placeholderTextColor={'#FFF'}
+              textAlign='center'
               keyboardType='default'
               value={password}
               onChangeText={text => onChange('password', text)}
@@ -113,7 +117,7 @@ const LoginScreen = ({ navigation, route }: Props) => {
                 activeOpacity={0.6}
                 onPress={() => navigation.navigate('RegisterScreen')}
               >
-                <Text style={styles.formRegisterText}>Registrate</Text>
+                <Text style={styles.formRegisterText}>Hazlo ahora.</Text>
               </TouchableOpacity>
             </View>
 
