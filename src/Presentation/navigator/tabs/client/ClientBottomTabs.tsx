@@ -18,7 +18,7 @@ export const ClientBottomTabs = () => {
             initialRouteName='ProfileInfoScreen'
             screenOptions={{
                 headerShown: false,
-                tabBarActiveBackgroundColor: '#fff', // Aquí defines el color negro
+                tabBarActiveBackgroundColor: 'FF4141',
             }}
         >
             <Tab.Screen
@@ -26,7 +26,7 @@ export const ClientBottomTabs = () => {
                 component={ProfileInfoScreen}
                 options={{
                     tabBarShowLabel: false,
-                    tabBarIcon: ({ size, color }) => <FontAwesome name="user" size={size} color={'#000'} />,
+                    tabBarIcon: ({ size, color }) => <FontAwesome name="user" size={size} color={'#}'} />,
                 }}
             />
         </Tab.Navigator>

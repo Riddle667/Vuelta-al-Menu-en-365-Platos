@@ -10,7 +10,7 @@ interface Props {
 export const ImageButton = ({ text, onPress }: Props) => {
 
     const images = {
-        back: require('../../assets/volver.png'),
+        back: require('../../assets/cerrar-sesion.png'),
     };
     return (
         <TouchableOpacity

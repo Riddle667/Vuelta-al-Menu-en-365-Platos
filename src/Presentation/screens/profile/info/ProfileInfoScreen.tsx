@@ -22,8 +22,15 @@ export const ProfileInfoScreen = ({ navigation, route }: Props) => {
         <View style={styles.container}>
             <Image
                 style={styles.imageBackground}
-                source={require('../../../../../assets/background.jpg')}
+                source={require('../../../../../assets/cocinero.png')}
             />
+
+        <View style={styles.logoContainer}>
+            <Image
+            style={styles.logo}
+            source={require('../../../../../assets/cubiertos-y-plato.png')}
+            />
+        </View>
 
             <View style={{ backgroundColor: '#fff', borderRadius: 100, top: '3%', right: '6%', position: 'absolute', marginTop: 35 }}>
                 <TouchableOpacity
@@ -41,12 +48,10 @@ export const ProfileInfoScreen = ({ navigation, route }: Props) => {
                 />
             </View>
 
-            {/* Form */}
             <View style={styles.form}>
-                {/* Names */}
                 <View style={{ ...styles.formInfo, marginTop: 20 }}>
                     <Image
-                        source={require('../../../../../assets/profile.png')}
+                        source={require('../../../../../assets/icono-usuario.png')}
                         style={styles.formIcon}
                     />
                     <View style={styles.formContent}>
@@ -55,10 +60,10 @@ export const ProfileInfoScreen = ({ navigation, route }: Props) => {
                     </View>
                 </View>
 
-                {/* Email */}
+                
                 <View style={{ ...styles.formInfo, marginTop: 20 }}>
                     <Image
-                        source={require('../../../../../assets/message.png')}
+                        source={require('../../../../../assets/icono-correo.png')}
                         style={styles.formIcon}
                     />
                     <View style={styles.formContent}>
@@ -67,10 +72,10 @@ export const ProfileInfoScreen = ({ navigation, route }: Props) => {
                     </View>
                 </View>
 
-                {/* Phone */}
+                
                 <View style={{ ...styles.formInfo, marginTop: 20, marginBottom: 50 }}>
                     <Image
-                        source={require('../../../../../assets/phone.png')}
+                        source={require('../../../../../assets/icono-telefono.png')}
                         style={styles.formIcon}
                     />
                     <View style={styles.formContent}>
@@ -80,7 +85,7 @@ export const ProfileInfoScreen = ({ navigation, route }: Props) => {
                 </View>
 
                 <RoundedButton
-                    text="Actualizar Perfil"
+                    text="Editar Datos"
                     onPress={() => navigation.navigate('ProfileUpdateScreen')}
                 />
             </View>

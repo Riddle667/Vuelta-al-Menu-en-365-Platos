@@ -52,7 +52,7 @@ const ProfileUpdateScreen = ({ navigation }: Props) => {
     <View style={styles.container}>
       <Image
         style={styles.imageBackground}
-        source={require('../../../../../assets/background.jpg')}
+        source={require('../../../../../assets/cocinero.png')}
       />
 
       <View style={{ top: '1%', left: '3%', position: 'absolute', marginTop: 35 }}>
@@ -107,7 +107,7 @@ const ProfileUpdateScreen = ({ navigation }: Props) => {
           <View style={styles.formInput}>
             <Image
               style={styles.formIcon}
-              source={require('../../../../../assets/profile.png')}
+              source={require('../../../../../assets/icono-usuario.png')}
             />
 
             <TextInput
@@ -127,7 +127,7 @@ const ProfileUpdateScreen = ({ navigation }: Props) => {
           <View style={styles.formInput}>
             <Image
               style={styles.formIcon}
-              source={require('../../../../../assets/profile.png')}
+              source={require('../../../../../assets/icono-usuario.png')}
             />
 
             <TextInput
@@ -147,7 +147,7 @@ const ProfileUpdateScreen = ({ navigation }: Props) => {
           <View style={styles.formInput}>
             <Image
               style={styles.formIcon}
-              source={require('../../../../../assets/phone.png')}
+              source={require('../../../../../assets/icono-telefono.png')}
             />
 
             <TextInput
