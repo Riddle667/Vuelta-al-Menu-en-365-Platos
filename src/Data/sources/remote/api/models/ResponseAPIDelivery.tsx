@@ -7,10 +7,10 @@ export interface ResponseAPIDelivery {
 }
 
 export interface Error {
-    type?: string;
-    value?: string;
-    msg?: string;
-    path?: string;
-    location?: string;
+    type: string;
+    value: string;
+    msg: string;
+    path: string;
+    location: string;
 }
 

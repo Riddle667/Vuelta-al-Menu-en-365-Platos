@@ -74,6 +74,7 @@ const CreateCategoryModel = () => {
           navigation.navigate("AdminHomeScreen");
         }
       }catch (error){
+        console.log(error);
         const rejectErrors: ResponseAPIDelivery = error;
         if(rejectErrors.errors){
           setErrosResponse(rejectErrors.errors);

@@ -44,7 +44,7 @@ const ChangePasswordModel = () => {
       icon: "success"
     })
     const isValid = await isValidForm();
-    console.log("Formulario valid: " + isValid);
+    console.log("Formulario valido?: " + isValid);
     if(isValid){
       setErrorMessages({});
       try{
@@ -53,9 +53,9 @@ const ChangePasswordModel = () => {
         const response = await ChangePasswordUserUseCase(values.password, "ignaciasdaassdo@gmail.com", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzE1OTk2ODY0LCJleHAiOjE3MTYwMTEyNjR9.bbxXDlaiwM1ZQQDaHH2tGxubyuC_5SAU0jvAdd4wLZA");
         console.log("response:" + response)
         if(response){
-          console.log('Contraseña actualizadaaasdasd');
+          console.log('Contraseña actualizada');
           showMessage({
-            message: "Contraseña Acualizadaaaaa",
+            message: "Contraseña Acualizada",
             type: "success",
             icon: "success"
           })

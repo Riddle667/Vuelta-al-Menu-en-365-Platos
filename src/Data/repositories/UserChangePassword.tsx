@@ -23,7 +23,7 @@ export class UserChangePasswordRepositoryImpl implements UserChangePasswordRepos
 
             return Promise.resolve(data);
         } catch (error) {
-            console.log("Ocurrió9o un error al cambiar la contraseña");
+            console.log("Ocurrió un error al cambiar la contraseña");
             console.log('ERROR: ', JSON.stringify(error));
             let e = (error as AxiosError);
             // console.log('ERROR: ', JSON.stringify(e.response?.data));
