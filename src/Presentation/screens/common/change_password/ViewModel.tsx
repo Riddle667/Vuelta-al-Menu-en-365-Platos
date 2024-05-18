@@ -50,6 +50,7 @@ const ChangePasswordModel = () => {
       try{
         console.log("realizando consulta...");
         console.log("values.password: " + values.password);
+        //Se utiliza un inicio de sesión de prueba, debido a que no se cuenta con un inicio de sesión real aún
         const response = await ChangePasswordUserUseCase(values.password, "ignaciasdaassdo@gmail.com", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzE1OTk2ODY0LCJleHAiOjE3MTYwMTEyNjR9.bbxXDlaiwM1ZQQDaHH2tGxubyuC_5SAU0jvAdd4wLZA");
         console.log("response:" + response)
         if(response){

@@ -75,15 +75,15 @@ const CreateCategoryModel = () => {
         }
       }catch (error){
         console.log(error);
+        console.log("Es posible que la categoría ya exista en la base de datos");
         const rejectErrors: ResponseAPIDelivery = error;
-        if(rejectErrors.errors){
-          setErrosResponse(rejectErrors.errors);
-          showMessage({
-            message: rejectErrors.message,
-            type: "danger",
-            icon: "danger"
-          })
-        }
+        setErrosResponse(rejectErrors.errors);    
+        showMessage({
+          message: "Es posible que la categoría ya exista en la base de datos",
+          type: "danger",
+          icon: "danger"
+        })
+        
       }
     }
   }
@@ -94,9 +94,9 @@ const CreateCategoryModel = () => {
       return true;
     } catch (error){
       const errors: Record<string, string> = {};
-      error.inner.forEach((error: yup.ValidationError) => {
-        errors[error.path] = error.message;
-      });
+      // error.inner.forEach((error: yup.ValidationError) => {
+      //   errors[error.path] = error.message;
+      // });
       setErrorMessages(errors);
       console.log(errors);
       return false;
