@@ -1,7 +1,7 @@
-// import { UserChangePasswordRepositoryImpl } from "../../../Data/repositories/UserChangePassword";
+import { UserChangePasswordRepositoryImpl } from "../../../Data/repositories/UserChangePassword";
 
-// const { ChangePassword } = new UserChangePasswordRepositoryImpl();
+const { ChangePassword } = new UserChangePasswordRepositoryImpl();
 
-// export const ChangePasswordUserUseCase = async (password: string, confirmPassword: string) => { 
-//     return await ChangePassword(password, confirmPassword);
-// }
+export const ChangePasswordUserUseCase = async (password: string, email: string, session_token: string) => { 
+    return await ChangePassword(password, email, session_token);
+}

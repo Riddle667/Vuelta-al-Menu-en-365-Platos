@@ -3,6 +3,8 @@ import * as yup from "yup";
 // import { ChangePasswordUserUseCase } from "../../../../Domain/useCases/user/ChangePasswordUserUseCase";
 import { ResponseAPIDelivery } from "../../../../Data/sources/remote/api/models/ResponseAPIDelivery";
 import { showMessage } from "react-native-flash-message";
+import { ChangePasswordUserUseCase } from "../../../../Domain/useCases/user/ChangePasswordUserUseCase";
+import { AuthContext } from "../../../context/auth/AuthContext";
 
 interface Values {
   password: string;
@@ -42,11 +44,15 @@ const ChangePasswordModel = () => {
       icon: "success"
     })
     const isValid = await isValidForm();
+    console.log("Formulario valid: " + isValid);
     if(isValid){
       setErrorMessages({});
       try{
-        // const response = await ChangePasswordUserUseCase(values.password, values.confirmPassword);
-        if(true){
+        console.log("realizando consulta...");
+        console.log("values.password: " + values.password);
+        const response = await ChangePasswordUserUseCase(values.password, "ignaciasdaassdo@gmail.com", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzE1OTk2ODY0LCJleHAiOjE3MTYwMTEyNjR9.bbxXDlaiwM1ZQQDaHH2tGxubyuC_5SAU0jvAdd4wLZA");
+        console.log("response:" + response)
+        if(response){
           console.log('Contraseña actualizadaaasdasd');
           showMessage({
             message: "Contraseña Acualizadaaaaa",
@@ -56,12 +62,13 @@ const ChangePasswordModel = () => {
           navigation.navigate("AdminHomeScreen");
         }
       } catch (error){
+        console.log("Ocurrió un error al cambiar la contraseña: ");
         const rejectErrors: ResponseAPIDelivery = error;
-
+        console.log("Error: " + rejectErrors.message);
         if(rejectErrors.errors){
-          setErrosResponse(rejectErrors.errors);
+          // setErrosResponse(rejectErrors.errors);
           showMessage({
-            message: rejectErrors.message,
+            message: "Error",
             type: "danger",
             icon: "danger"
           })

@@ -6,23 +6,29 @@ import { ResponseAPIDelivery } from "../sources/remote/api/models/ResponseAPIDel
 
 
 
-// export class UserChangePasswordRepositoryImpl implements UserChangePasswordRepository {
-//     async ChangePassword(password: string, confirmPassword: string): Promise<ResponseAPIDelivery> {
-//         try {
-//             const path = `user/${id}`;
+export class UserChangePasswordRepositoryImpl implements UserChangePasswordRepository {
+    async ChangePassword(password: string, email: string, session_token: string): Promise<ResponseAPIDelivery> {
+        try {
 
-//             const { data } = await ApiDelivery.put<ResponseAPIDelivery>(path, { name, lastName, phone }, {
-//                 headers: {
-//                     'Authorization': `Bearer ${session_token}`
-//                 }
-//             });
+            console.log(password);
+            console.log(email);
+            console.log(session_token);
+            const path = "/user/change-password";
 
-//             return Promise.resolve(data);
-//         } catch (error) {
-//             let e = (error as AxiosError);
-//             // console.log('ERROR: ', JSON.stringify(e.response?.data));
-//             const apiError: ResponseAPIDelivery = JSON.parse(JSON.stringify(e.response?.data));
-//             return Promise.reject(apiError)
-//         }
-//     }
-// }
+            const { data } = await ApiDelivery.put<ResponseAPIDelivery>(path, { email: email, newPassword: password, token: session_token}, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            return Promise.resolve(data);
+        } catch (error) {
+            console.log("Ocurrió9o un error al cambiar la contraseña");
+            console.log('ERROR: ', JSON.stringify(error));
+            let e = (error as AxiosError);
+            // console.log('ERROR: ', JSON.stringify(e.response?.data));
+            const apiError: ResponseAPIDelivery = JSON.parse(JSON.stringify(e.response?.data));
+            return Promise.reject(apiError)
+        }
+    }
+}
