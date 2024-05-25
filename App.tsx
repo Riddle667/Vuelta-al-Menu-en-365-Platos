@@ -1,35 +1,64 @@
-import 'react-native-gesture-handler';
-import React, { ReactElement } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { MainAppStack } from './src/Presentation/navigator/MainAppStack';
-import { View } from 'react-native';
-import FlashMessage from 'react-native-flash-message';
-import { AuthProvider } from './src/Presentation/context/auth/AuthContext';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native';
 
-interface AppStateProps {
-  children: ReactElement | ReactElement[] | null;
-}
-
-const AppState: React.FC<AppStateProps> = ({ children }) => {
+export default function App() {
   return (
-    <AuthProvider>
-      {children}
-    </AuthProvider>
-  )
-}
+    <View style={styles.container}>
+      <Image
+        source={ require('./assets/chef.jpg') } 
+        style= {styles.imageBackground}
+        />
 
-const App = () => {
-  return (
-    <NavigationContainer>
-      <AppState>
-        <View style={{ flex: 1 }}>
-          <MainAppStack />
-          <FlashMessage position="bottom" />
-        </View>
-      </AppState>
-    </NavigationContainer>
+      <View style={ styles.form }>
+      </View>
+
+      <View style={ styles.logoContainer }>
+        <Image
+          source={ require('./assets/logo.png') }
+          style={ styles.logoImage }
+        />
+
+        <Text style={ styles.logoText }>Vuelta al menu en 365 platos</Text>
+      </View>
+    </View>
   );
-
 }
 
-export default App;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'black',
+  },
+  imageBackground: {
+    width: '100%',
+    height: '100%',
+    opacity: 0.7,
+    bottom: '30%'
+  },
+  form:{
+    width: '100%',
+    height: '40%',
+    backgroundColor: 'white',
+    position: 'absolute',
+    bottom: 0,
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40
+  },
+  logoContainer: {
+    position: 'absolute',
+    alignSelf: 'center', 
+    top: '15%'
+  },
+  logoImage: {
+    width: 120,
+    height: 120,
+    alignSelf: 'center'
+  },
+  logoText: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 20,
+    marginTop: 20,
+    fontWeight: 'bold'
+  }
+});

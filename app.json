@@ -1,30 +1,16 @@
 {
   "expo": {
-    "name": "frontend-mobile",
-    "slug": "frontend-mobile",
+    "name": "DSM_Thomas_Chapa",
+    "slug": "DSM_Thomas_Chapa",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "plugins": [
-      [
-        "expo-image-picker",
-        {
-          "photosPermission": "custom photos permission",
-          "cameraPermission": "Allow $(PRODUCT_NAME) to open the camera",
-          "//": "Disables the microphone permission",
-          "microphonePermission": false
-        }
-      ]
-    ],
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
     "ios": {
       "supportsTablet": true
     },
