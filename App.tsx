@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, TextInput } from 'react-native';
 
 export default function App() {
   return (
@@ -10,6 +10,21 @@ export default function App() {
         />
 
       <View style={ styles.form }>
+
+        <Text style={ styles.formText }>Iniciar Sesión</Text>
+
+        <View style= {styles.formInput }>
+          <Image
+            style= { styles.formIcon }
+            source={ require('./assets/email.png') }
+          />
+          <TextInput
+            style={ styles.formTextInput }
+            placeholder= 'Correo electronico'
+          />
+          </View>
+
+
       </View>
 
       <View style={ styles.logoContainer }>
@@ -42,7 +57,25 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     borderTopLeftRadius: 40,
-    borderTopRightRadius: 40
+    borderTopRightRadius: 40,
+    padding: 30
+  },
+  formText: {
+    fontWeight: 'bold',
+    fontSize: 25
+  },
+  formIcon: {
+    width: 25,
+    height: 25
+  },
+  formInput: {
+    flexDirection: 'row'
+  },
+  formTextInput: {
+    //flex: 1,
+    borderBottomWidth: 1,
+    borderBottomColor: 'gray',
+
   },
   logoContainer: {
     position: 'absolute',
@@ -60,5 +93,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginTop: 20,
     fontWeight: 'bold'
-  }
+  },
+
 });
