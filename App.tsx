@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, ImageBackground, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, TextInput, Button, ToastAndroid } from 'react-native';
 
 export default function App() {
   return (
@@ -20,10 +20,40 @@ export default function App() {
           />
           <TextInput
             style={ styles.formTextInput }
-            placeholder= 'Correo electronico'
+            placeholder= 'ejemplo@gmail.com'
+            placeholderTextColor= '#FFFFFF'
+            textAlign= 'center'
+            keyboardType='email-address'
           />
-          </View>
+        </View>
 
+        <View style= {styles.formInput }>
+          <Image
+            style= { styles.formIcon }
+            source={ require('./assets/lock.png') }
+          />
+          <TextInput
+            style={ styles.formTextInput }
+            placeholder= '***********'
+            placeholderTextColor= '#FFFFFF'
+            textAlign= 'center'
+            keyboardType='default'
+            secureTextEntry= {true}
+          />
+        </View>
+
+        <View style= {{ marginTop: 30 }}>
+          <Button  
+            title='ENTRAR'
+            onPress={ () => ToastAndroid.show('CLICK', ToastAndroid.LONG) }
+            color= '#FF4141'
+          />  
+        </View>
+
+        <View style= { styles.formRegister }>
+          <Text>¿No estás registrado?</Text>
+          <Text style= { styles.formRegisterText }>Hazlo ahora</Text>
+        </View>
 
       </View>
 
@@ -58,24 +88,42 @@ const styles = StyleSheet.create({
     bottom: 0,
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
-    padding: 30
+    padding: 30,
   },
   formText: {
     fontWeight: 'bold',
     fontSize: 25
   },
   formIcon: {
-    width: 25,
-    height: 25
+    width: 30,
+    height: 30
   },
   formInput: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginTop: 30
   },
   formTextInput: {
-    //flex: 1,
+    flex: 1,
+    backgroundColor: '#FF4141',
+    borderWidth: 1,
+    borderColor: '#FF4141',
+    borderRadius: 50, 
+    color: 'white', 
+    marginLeft: 10
+    
+  },
+  formRegister: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 15, 
+  },
+  formRegisterText: {
+    fontStyle: 'italic',
+    color: '#FF4141',
+    fontWeight: 'bold',
     borderBottomWidth: 1,
-    borderBottomColor: 'gray',
-
+    borderBottomColor: '#FF4141',
+    marginLeft: 10
   },
   logoContainer: {
     position: 'absolute',
