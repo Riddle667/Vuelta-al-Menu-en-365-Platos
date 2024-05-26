@@ -1,5 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, ImageBackground, TextInput, Button, ToastAndroid } from 'react-native';
+import { RoundedButton } from './src/components/RoundedButton';
+import { MyColors } from './src/theme/AppTheme';
 
 export default function App() {
   return (
@@ -43,11 +45,7 @@ export default function App() {
         </View>
 
         <View style= {{ marginTop: 30 }}>
-          <Button  
-            title='ENTRAR'
-            onPress={ () => ToastAndroid.show('CLICK', ToastAndroid.LONG) }
-            color= '#FF4141'
-          />  
+          <RoundedButton text='INGRESAR'/>
         </View>
 
         <View style= { styles.formRegister }>
@@ -104,9 +102,9 @@ const styles = StyleSheet.create({
   },
   formTextInput: {
     flex: 1,
-    backgroundColor: '#FF4141',
+    backgroundColor: MyColors.primary,
     borderWidth: 1,
-    borderColor: '#FF4141',
+    borderColor: MyColors.primary,
     borderRadius: 50, 
     color: 'white', 
     marginLeft: 10
@@ -119,10 +117,10 @@ const styles = StyleSheet.create({
   },
   formRegisterText: {
     fontStyle: 'italic',
-    color: '#FF4141',
+    color: MyColors.primary,
     fontWeight: 'bold',
     borderBottomWidth: 1,
-    borderBottomColor: '#FF4141',
+    borderBottomColor: MyColors.primary,
     marginLeft: 10
   },
   logoContainer: {
