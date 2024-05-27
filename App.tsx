@@ -1,35 +1,39 @@
-import 'react-native-gesture-handler';
-import React, { ReactElement } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { MainAppStack } from './src/Presentation/navigator/MainAppStack';
-import { View } from 'react-native';
-import FlashMessage from 'react-native-flash-message';
-import { AuthProvider } from './src/Presentation/context/auth/AuthContext';
+import * as React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { RegisterScreen } from './src/Presentation/views/register/Register';
+import { HomeScreen } from './src/Presentation/views/home/Home';
 
-interface AppStateProps {
-  children: ReactElement | ReactElement[] | null;
+
+export type RootStackParamList= {
+  HomeScreen: undefined,
+  RegisterScreen: undefined
 }
 
-const AppState: React.FC<AppStateProps> = ({ children }) => {
-  return (
-    <AuthProvider>
-      {children}
-    </AuthProvider>
-  )
-}
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <AppState>
-        <View style={{ flex: 1 }}>
-          <MainAppStack />
-          <FlashMessage position="bottom" />
-        </View>
-      </AppState>
+      <Stack.Navigator screenOptions={{
+        headerShown: false
+      }}>
+
+        <Stack.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+        />
+          <Stack.Screen name="RegisterScreen" 
+          component={RegisterScreen} 
+          options={{
+            headerShown: true,
+            title: ''
+          }}
+          />
+
+      </Stack.Navigator>
     </NavigationContainer>
   );
+};
 
-}
-
-export default App;
+  export default App;

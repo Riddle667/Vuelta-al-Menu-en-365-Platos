@@ -1,39 +1,37 @@
-import React from "react";
-import { Keyboard, StyleSheet, Text, TouchableOpacity } from "react-native";
-import { CustomColors } from "../theme/AppTheme";
+import React from 'react'
+import { TouchableOpacity, Text, StyleSheet } from 'react-native'
+import { MyColors } from '../theme/AppTheme'
 
 interface Props {
-    text: String,
+    text: string,
     onPress: () => void
 }
 
-export const RoundedButton = ({ text, onPress }: Props) => {
-    return (
-        <TouchableOpacity
-            activeOpacity={0.7}
-            style={styles.roundedButton}
-            onPress={() => {
-                Keyboard.dismiss()
-                onPress()
-            }}
-        >
-            <Text style={styles.textButton}>{text}</Text>
-        </TouchableOpacity>
-    )
+export const RoundedButton = ({text, onPress}: Props) => {
+  return (
+    <TouchableOpacity
+        style={styles.roundedButton}
+        onPress={() => onPress()}
+    >
+        <Text style={styles.textButtonLogin}>{text}</Text>
+    </TouchableOpacity>
+  )
 }
 
-const styles = StyleSheet.create({
-    roundedButton: {
-        alignItems: 'center',
-        backgroundColor: CustomColors.primary,
-        borderRadius: 15,
-        padding: 15,
-        width: '100%',
 
+const styles = StyleSheet.create({
+    roundedButton : {
+        width: '100%',
+        height: 40,
+        backgroundColor: MyColors.primary,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 30,
+        fontSize: 20,
     },
-    textButton: {
-        color: '#FFFFFF',
-        fontWeight: 'bold',
-        textTransform: 'uppercase'
+
+    textButtonLogin: {
+        color: MyColors.background,
+        fontWeight: 'bold'
     }
 });
