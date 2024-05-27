@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { ApiDelivery } from '../../../Data/source/remote/api/ApiDelivery';
 
 const RegisterViewModel = () => {
 
@@ -17,8 +18,14 @@ const RegisterViewModel = () => {
         setvalues({...values, [property]:value})
     }
 
-    const register = () => {
-        console.log(JSON.stringify(values));
+    const register = async () => {
+        try {
+            
+            const response = await ApiDelivery.post('/users/create', values);
+            console.log('RESPUESTA' + JSON.stringify(response));
+        } catch (error) {
+            console.log('ERROR:' + error)
+        }
     }
 
     return {
