@@ -6,6 +6,9 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../../../App';
 import useViewModel from './ViewModel'
+import { CustomTextInput } from '../../components/CustomTextInput';
+import styles from './Styles'
+
 
 export const HomeScreen = () => {
 
@@ -34,36 +37,24 @@ export const HomeScreen = () => {
 
             <Text style={styles.formCenterText}>Iniciar Sesion</Text>
 
-            <View style={styles.formMailInput}>
-            <Image
-                style={styles.formIconMail}
-                source={require('../../../../assets/icono correo.png')}
-                />
-
-            <TextInput
-            style={styles.formTextInput}
-                placeholder='Example@gmail.com' 
+            <CustomTextInput
+                image ={require('../../../../assets/icono correo.png')}
+                placeholder='Example@gmail.com'
                 keyboardType='email-address'
-                value={ email}
-                onChangeText={ text => onChange('email', text)}
-                />
-            </View>
+                property='email'
+                onChangeText={onChange}
+                value={email}
+            />
 
-            <View style={styles.formPasswordInput}>
-            <Image
-                style={styles.formIconPassword  }
-                source={require('../../../../assets/icono contraseña.png')}
-                />
-
-            <TextInput
-            style={styles.formTextInput}
-                placeholder='********' 
+            <CustomTextInput
+                image ={require('../../../../assets/icono contraseña.png')}
+                placeholder='********'
                 keyboardType='default'
+                property='password'
+                onChangeText={onChange}
+                value={password}
                 secureTextEntry= {true}
-                value={ password}
-                onChangeText={ text => onChange('password', text)}
-                />
-            </View>
+            />
 
             <View style={{marginTop: 20}}>
             
@@ -88,89 +79,3 @@ export const HomeScreen = () => {
     );
 }
     
-const styles = StyleSheet.create({
-    LoginScreen: {
-        flex: 1,
-        backgroundColor: 'black',
-    },
-
-    ImageBackground: {
-        width: '100%',
-        height: '65%',
-    },
-
-    form: {
-        width: '100%',
-        height: '40%',
-        backgroundColor: 'white',
-        position: 'absolute',
-        bottom: 0,
-        borderTopLeftRadius: 40,
-        borderTopRightRadius: 40
-    },
-
-    logoLoginImage: {
-        position: 'absolute',
-        alignSelf: 'center',
-        top: '10%',
-        borderRadius: 50,
-        marginBottom: 10
-
-
-    },
-
-    logoLoginText: {
-        color: 'white',
-        textAlign: 'center',
-        fontSize: 18,
-        marginTop: 10,
-        fontWeight: 'bold'
-    },
-
-    formCenterText: {
-        fontWeight: 'bold',
-        textAlign: 'center',
-        fontSize: 25,
-        padding: 15,
-    },
-
-    formTextInput: {
-        flex: 1,
-        borderBottomWidth: 1,
-        borderBottomColor: '#white',
-        marginLeft: 20
-    },
-
-    formMailInput: {
-        flexDirection: 'row',
-        marginTop: 40,
-    },
-
-    formIconMail: {
-        width: 40,
-        height: 40,
-        marginLeft: 5
-    },
-
-    formIconPassword: {
-        width: 40,
-        height: 40,
-        marginLeft: 5
-    },
-
-    formPasswordInput: {
-        flexDirection: 'row',
-        marginTop: 40,
-    },
-
-    formHelp: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        marginTop: 10,
-
-    },
-
-    formHelpText: {
-        color: MyColors.primary
-    }
-});
