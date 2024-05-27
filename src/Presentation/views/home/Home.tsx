@@ -4,19 +4,20 @@ import { RoundedButton } from '../../components/RoundedButton';
 import { MyColors } from '../../theme/AppTheme';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack'
-import { RootStackParamList } from '../../../App';
+import { RootStackParamList } from '../../../../App';
+import useViewModel from './ViewModel';
+import { CustomTextInput } from '../../components/CustomTextInput';
 
 export const HomeScreen = () => {
     
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const { email, password, onChange } = useViewModel();
 
     const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
     return (
     <View style={styles.container}>
         <Image
-            source={ require('../../../assets/chef.jpg') } 
+            source={ require('../../../../assets/chef.jpg') } 
             style= {styles.imageBackground}
         />
 
@@ -24,41 +25,30 @@ export const HomeScreen = () => {
 
             <Text style={ styles.formText }>Iniciar Sesión</Text>
 
-        <View style= {styles.formInput }>
-            <Image
-                style= { styles.formIcon }
-                source={ require('../../../assets/email.png') }
-                />
-                <TextInput
-                style={ styles.formTextInput }
+            <CustomTextInput
+                image={ require('../../../../assets/email.png') }
                 placeholder='ejemplo@gmail.com'
-                placeholderTextColor='#FFFFFF'
-                textAlign='center'
-                keyboardType='email-address'
+                KeyboardType='email-address'
+                property='email'
+                onChangeText={ onChange }
                 value={ email }
-                onChangeText={ text => setEmail(text) }
             />
-        </View>
 
-        <View style= {styles.formInput }>
-            <Image
-                style= { styles.formIcon }
-                source={ require('../../../assets/lock.png') }
-            />
-            <TextInput
-                style={ styles.formTextInput }
-                placeholder= '***********'
-                placeholderTextColor= '#FFFFFF'
-                textAlign= 'center'
-                keyboardType='default'
-                secureTextEntry= {true}
+            <CustomTextInput
+                image={ require('../../../../assets/lock.png') }
+                placeholder='***********'
+                KeyboardType='default'
+                property='password'
+                onChangeText={ onChange }
                 value={ password }
-                onChangeText={ text => setPassword(text) }
+                secureTextEntry={ true }
             />
-        </View>
 
-        <View style= {{ marginTop: 30 }}>
-            <RoundedButton text='INGRESAR' onPress={ () => ToastAndroid.show('HOLA', ToastAndroid.SHORT) }/>
+            <View style= {{ marginTop: 30 }}>
+                <RoundedButton text='INGRESAR' onPress={ () => {
+                    console.log('Email: '+ email);
+                    console.log('Password: '+ password);
+                }}/>
         </View>
 
         <View style= { styles.formRegister }>
@@ -73,7 +63,7 @@ export const HomeScreen = () => {
 
         <View style={ styles.logoContainer }>
             <Image
-                source={ require('../../../assets/logo.png') }
+                source={ require('../../../../assets/logo.png') }
                 style={ styles.logoImage }
             />
 
