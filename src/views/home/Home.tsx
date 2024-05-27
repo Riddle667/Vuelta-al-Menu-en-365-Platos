@@ -1,13 +1,22 @@
-import React from 'react'
-import { Image, Text, View, TextInput, ToastAndroid, StyleSheet,  } from 'react-native';
+import React, { useState } from 'react'
+import { Image, Text, View, TextInput, ToastAndroid, StyleSheet, TouchableOpacity,  } from 'react-native';
 import { RoundedButton } from '../../components/RoundedButton';
 import { MyColors } from '../../theme/AppTheme';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack'
+import { RootStackParamList } from '../../../App';
 
 export const HomeScreen = () => {
+    
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+
     return (
     <View style={styles.container}>
         <Image
-            source={ require('./assets/chef.jpg') } 
+            source={ require('../../../assets/chef.jpg') } 
             style= {styles.imageBackground}
         />
 
@@ -18,21 +27,23 @@ export const HomeScreen = () => {
         <View style= {styles.formInput }>
             <Image
                 style= { styles.formIcon }
-                source={ require('./assets/email.png') }
+                source={ require('../../../assets/email.png') }
                 />
                 <TextInput
                 style={ styles.formTextInput }
-                placeholder= 'ejemplo@gmail.com'
-                placeholderTextColor= '#FFFFFF'
-                textAlign= 'center'
+                placeholder='ejemplo@gmail.com'
+                placeholderTextColor='#FFFFFF'
+                textAlign='center'
                 keyboardType='email-address'
+                value={ email }
+                onChangeText={ text => setEmail(text) }
             />
         </View>
 
         <View style= {styles.formInput }>
             <Image
                 style= { styles.formIcon }
-                source={ require('./assets/lock.png') }
+                source={ require('../../../assets/lock.png') }
             />
             <TextInput
                 style={ styles.formTextInput }
@@ -41,6 +52,8 @@ export const HomeScreen = () => {
                 textAlign= 'center'
                 keyboardType='default'
                 secureTextEntry= {true}
+                value={ password }
+                onChangeText={ text => setPassword(text) }
             />
         </View>
 
@@ -50,14 +63,17 @@ export const HomeScreen = () => {
 
         <View style= { styles.formRegister }>
             <Text>¿No estás registrado?</Text>
-            <Text style= { styles.formRegisterText }>Hazlo ahora</Text>
+            <TouchableOpacity onPress={ () => navigation.navigate('RegisterScreen') }>
+                <Text style= { styles.formRegisterText }>Hazlo ahora</Text>
+            </TouchableOpacity>
+            
         </View>
 
         </View>
 
         <View style={ styles.logoContainer }>
             <Image
-                source={ require('./assets/logo.png') }
+                source={ require('../../../assets/logo.png') }
                 style={ styles.logoImage }
             />
 
