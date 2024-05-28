@@ -1,8 +1,11 @@
 import React, {useState} from 'react'
 import { ApiDelivery } from '../../../Data/source/remote/api/ApiDelivery';
+import { RegisterAuthUseCase } from '../../../Domain/useCases/auth/RegisterAuth';
+
 
 const RegisterViewModel = () => {
 
+    const [errorMessage, setErrorMessage] = useState('');
     const [values, setvalues] = useState({
         name:'',
         lastname:'',
@@ -19,19 +22,55 @@ const RegisterViewModel = () => {
     }
 
     const register = async () => {
-        try {
-            
-            const response = await ApiDelivery.post('/users/create', values);
-            console.log('RESPUESTA' + JSON.stringify(response));
-        } catch (error) {
-            console.log('ERROR:' + error)
+        if(isValidForm()) {
+            const response = await RegisterAuthUseCase(values as any);
+            console.log('EL RESULTADO ES' + JSON.stringify(response));
+
         }
+    
+
     }
+    const isValidForm =(): boolean => {
+        if (values.name == '') {
+            setErrorMessage('Debe ingresar un nombre')
+            return false;
+        }
+        if (values.lastname == '') {
+            setErrorMessage('Debe ingresar un apellido')
+            return false;
+        }
+        if (values.phone == '') {
+            setErrorMessage('Debe ingresar un telegono')
+            return false;
+        }
+        if (values.email == '') {
+            setErrorMessage('Debe ingresar un correo electronico')
+            return false;
+        }
+        if (values.password == '') {
+            setErrorMessage('Debe ingresar una contraseña')
+            return false;
+        }
+        if (values.confirmPassword == '') {
+            setErrorMessage('Debe ingresar una contraseña')
+            return false;
+        }
+        if (values.password !== values.confirmPassword) {
+            setErrorMessage('las contraseñas no son iguales')
+            return false;
+        }
+
+
+        return true;
+    }
+
 
     return {
         ...values,
         onChange,
-        register
+        register,
+        errorMessage,
+        isValidForm
     }
 }
 export default RegisterViewModel;

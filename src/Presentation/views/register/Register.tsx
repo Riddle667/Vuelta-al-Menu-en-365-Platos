@@ -1,5 +1,5 @@
-import React from 'react'
-import { View, Text, Image, TextInput, TouchableOpacity, ToastAndroid, StyleSheet } from 'react-native'
+import React, { useEffect } from 'react'
+import { View, Text, Image, TextInput, TouchableOpacity, ToastAndroid, StyleSheet, ScrollView } from 'react-native'
 import { RoundedButton } from '../../../Presentation/components/RoundedButton';
 import { MyColors } from '../../../Presentation/theme/AppTheme';
 import useViewModel from './ViewModel'
@@ -8,8 +8,14 @@ import styles from './Styles'
 
 export const RegisterScreen = () => {
 
-    const{name, lastname, phone, email, password, confirmPassword, onChange, register } = useViewModel();
+    const{name, lastname, phone, email, password, confirmPassword, onChange, register, errorMessage, isValidForm } = useViewModel();
 
+    useEffect(() => {
+      if(errorMessage !=''){
+              ToastAndroid.show(errorMessage, ToastAndroid.LONG);
+      }
+    }, [errorMessage])
+    
    return (
       <View style={styles.LoginScreen}>
           <Image
@@ -29,67 +35,75 @@ export const RegisterScreen = () => {
 
           <View style={styles.form}>
 
-          <CustomTextInput 
-            placeholder='Nombre'
-            keyboardType='default'
-            image = {require('../../../../assets/Usuario.png')}
-            property={'name'}
-            onChangeText={onChange}
-            value={name}
-          />
+            <ScrollView>
 
-            <CustomTextInput 
-            placeholder='Apellido'
-            keyboardType='default'
-            image = {require('../../../../assets/Usuario.png')}
-            property={'lastname'}
-            onChangeText={onChange}
-            value={lastname}
-          />
+              <CustomTextInput 
+                placeholder='Nombre'
+                keyboardType='default'
+                image = {require('../../../../assets/Usuario.png')}
+                property={'name'}
+                onChangeText={onChange}
+                value={name}
+                />
 
-            <CustomTextInput 
-            placeholder='Telefono'
-            keyboardType='default'
-            image = {require('../../../../assets/Telefono.png')}
-            property={'phone'}
-            onChangeText={onChange}
-            value={phone}
-          />
+                <CustomTextInput 
+                placeholder='Apellido'
+                keyboardType='default'
+                image = {require('../../../../assets/Usuario.png')}
+                property={'lastname'}
+                onChangeText={onChange}
+                value={lastname}
+                />
 
-            <CustomTextInput 
-            placeholder='Example@gmail.com'
-            keyboardType='email-address'
-            image = {require('../../../../assets/icono correo.png')}
-            property= 'email'
-            onChangeText={onChange}
-            value={email}
-          />
+                <CustomTextInput 
+                placeholder='Telefono'
+                keyboardType='default'
+                image = {require('../../../../assets/Telefono.png')}
+                property={'phone'}
+                onChangeText={onChange}
+                value={phone}
+                 />
 
-            <CustomTextInput 
-            placeholder='Contraseña'
-            keyboardType='default'
-            image = {require('../../../../assets/icono contraseña.png')}
-            property= 'password'
-            onChangeText={onChange}
-            value={password}
-            secureTextEntry={true}
-          />
+                <CustomTextInput 
+                placeholder='Example@gmail.com'
+                keyboardType='email-address'
+                image = {require('../../../../assets/icono correo.png')}
+                property= 'email'
+                onChangeText={onChange}
+                value={email}
+                />
 
-            <CustomTextInput 
-            placeholder='Confirmar Contraseña'
-            keyboardType='default'
-            image = {require('../../../../assets/icono contraseña.png')}
-            property= 'confirmPassword'
-            onChangeText={onChange}
-            value={confirmPassword}
-            secureTextEntry={true}
-          />
-        
-            <View style={{marginTop:5}}>
+                <CustomTextInput 
+                placeholder='Contraseña'
+                keyboardType='default'
+                image = {require('../../../../assets/icono contraseña.png')}
+                property= 'password'
+                onChangeText={onChange}
+                value={password}
+                secureTextEntry={true}
+                 />
+
+                <CustomTextInput 
+                placeholder='Confirmar Contraseña'
+                keyboardType='default'
+                image = {require('../../../../assets/icono contraseña.png')}
+                property= 'confirmPassword'
+                onChangeText={onChange}
+                value={confirmPassword}
+                secureTextEntry={true}
+                />
             
-            <RoundedButton text='CONFIRMAR' onPress={() => register()} />
+                <View style={{marginTop:5}}>
+                
+                <RoundedButton text='CONFIRMAR' onPress={() => {
+                  if (isValidForm()) {
+                    register();
+                  }
+                }} />
 
-            </View>
+                </View>
+
+            </ScrollView>
           
           </View>
 
