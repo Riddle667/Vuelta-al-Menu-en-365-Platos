@@ -40,7 +40,7 @@ const RegisterViewModel = () => {
             return false;
         }
         if (values.phone == '') {
-            setErrorMessage('Debe ingresar un telegono')
+            setErrorMessage('Debe ingresar un telefono')
             return false;
         }
         if (values.email == '') {
