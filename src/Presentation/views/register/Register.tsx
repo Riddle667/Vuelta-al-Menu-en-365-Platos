@@ -1,5 +1,5 @@
-import React from 'react'
-import { Image, Text, View, ScrollView,  } from 'react-native';
+import React, { useEffect } from 'react'
+import { Image, Text, View, ScrollView, ToastAndroid,  } from 'react-native';
 import { RoundedButton } from '../../components/RoundedButton';
 import { MyColors } from '../../theme/AppTheme';
 import useViewModel from './ViewModel';
@@ -8,7 +8,14 @@ import styles from './Styles';
 
 export const RegisterScreen = () => {
 
-    const { name, lastname, email, phone, password, confirmPassword, onChange, register } = useViewModel();
+    const { name, lastname, email, phone, password, confirmPassword, errorMessage, onChange, register } = useViewModel();
+
+    useEffect(() => {
+        if (errorMessage != '') {
+            ToastAndroid.show(errorMessage, ToastAndroid.LONG);   
+        }
+    }, [errorMessage])
+    
 
     return (
         <View style={styles.container}>
@@ -88,7 +95,7 @@ export const RegisterScreen = () => {
             
                     <View style= {{ marginTop: 30 }}>
 
-                        <RoundedButton text='CONFIRMAR' onPress={ () => register() }/>
+                        <RoundedButton text='CONFIRMAR' onPress={ () => register()}/>
                         
                     </View>
     
