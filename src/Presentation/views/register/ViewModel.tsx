@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { ApiDelivery } from '../../../Data/sources/remote/api/ApiDelivery';
 import { RegisterAuthUseCase } from '../../../Domain/useCases/auth/RegisterAuth';
+import { Image } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
 
 const RegisterViewModel = () => {
 
@@ -10,9 +12,25 @@ const RegisterViewModel = () => {
         lastname:'',
         phone: '',
         email: '',
+        image: '',
         password: '',
         confirmPassword: '',
     });
+    const [file, setFile] = useState<ImagePicker.ImageInfo>()
+
+    const pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
+          allowsEditing: true,
+          quality: 1
+        });
+
+        if (!result.cancelled) {
+            onChange('image', result.uri);
+            setFile(result);
+        }
+
+    }
 
     const onChange = (property: string, value: any) => {
         setValues({ ...values, [property]: value })
@@ -70,6 +88,7 @@ const RegisterViewModel = () => {
         ...values,
         onChange,
         register,
+        pickImage,
         errorMessage
     }
 }
