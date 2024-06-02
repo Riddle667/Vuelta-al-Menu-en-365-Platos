@@ -1,21 +1,32 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, Image, TextInput, TouchableOpacity, ToastAndroid, StyleSheet, ScrollView, Modal } from 'react-native'
+import { View, Text, Image, TextInput, TouchableOpacity, ToastAndroid, StyleSheet, ScrollView, Modal, ActivityIndicator } from 'react-native'
 import { RoundedButton } from '../../../Presentation/components/RoundedButton';
 import { MyColors } from '../../../Presentation/theme/AppTheme';
 import useViewModel from './ViewModel'
 import { CustomTextInput } from '../../components/CustomTextInput';
 import styles from './Styles'
 import { ModalPickImage } from '../../components/ModalPickImage';
+import { StackScreenProps } from '@react-navigation/stack';
+import { RootStackParamList } from '../../../../App';
 
-export const RegisterScreen = () => {
 
-    const{name, lastname, phone, email, image, password, confirmPassword, onChange, register, takePhoto, errorMessage, isValidForm, pickImage } = useViewModel();
+interface Props extends StackScreenProps<RootStackParamList, 'RegisterScreen'> {}
+
+export const RegisterScreen = ({navigation, route}: Props) => {
+
+    const{name, lastname, phone, email, image, password, confirmPassword, onChange, register, takePhoto, errorMessage, isValidForm, pickImage, user, loading } = useViewModel();
     const [modalVisible, setModalVisible] = useState(false);
     useEffect(() => {
       if(errorMessage !=''){
               ToastAndroid.show(errorMessage, ToastAndroid.LONG);
       }
     }, [errorMessage])
+
+    useEffect(() => {
+      if(user?.id !== null && user?.id !== undefined){
+        navigation.replace('ClientTabsNavigator');
+      }
+    }, [user])
     
    return (
       <View style={styles.LoginScreen}>
@@ -125,6 +136,15 @@ export const RegisterScreen = () => {
             modalUseState={modalVisible}
             setModalUseState={setModalVisible}
           />
+          {
+            loading && 
+            <ActivityIndicator 
+            style ={styles.loading} 
+            size="large" 
+            color={MyColors.primary} 
+            />
+
+          }
           
           
       </View>

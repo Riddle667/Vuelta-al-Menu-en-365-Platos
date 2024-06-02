@@ -26,7 +26,6 @@ export class AuthRepositoryImpl implements AuthRepository{
 
             let data = new FormData();
             data.append('image',{
-                // @ts-ignore
                 uri: file.uri,
                 name: file.uri.split('/').pop(),
                 type: mime.getType(file.uri)!

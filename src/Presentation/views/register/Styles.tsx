@@ -27,7 +27,7 @@ const RegisterStyles = StyleSheet.create({
         alignSelf: 'center',
         top: '1%',
         borderRadius: 50,
-        marginBottom: 10
+        marginBottom: 10,
 
 
     },
@@ -77,6 +77,15 @@ const RegisterStyles = StyleSheet.create({
         flexDirection: 'row',
         marginTop: 40,
     },
+
+    loading: {
+        
+        position: 'absolute',
+        bottom: 0,
+        top: 0,
+        right: 0,
+        left: 0,
+    }
 
 });
 
