@@ -32,6 +32,20 @@ const RegisterViewModel = () => {
 
     }
 
+    const takePhoto = async () => {
+        let result = await ImagePicker.launchCameraAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
+          allowsEditing: true,
+          quality: 1
+        });
+
+        if (!result.cancelled) {
+            onChange('image', result.uri);
+            setFile(result);
+        }
+
+    }
+
     const onChange = (property: string, value: any) => {
         setValues({ ...values, [property]: value })
     }
@@ -89,6 +103,7 @@ const RegisterViewModel = () => {
         onChange,
         register,
         pickImage,
+        takePhoto,
         errorMessage
     }
 }

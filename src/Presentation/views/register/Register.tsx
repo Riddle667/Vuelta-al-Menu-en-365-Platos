@@ -9,7 +9,7 @@ import { ModalPickImage } from '../../components/ModalPickImage';
 
 export const RegisterScreen = () => {
 
-    const { name, lastname, email, image, phone, password, confirmPassword, errorMessage, onChange, register, pickImage } = useViewModel();
+    const { name, lastname, email, image, phone, password, confirmPassword, errorMessage, onChange, register, pickImage, takePhoto } = useViewModel();
     const [modalVisible, setModalVisible] = useState(false);
 
     useEffect(() => {
@@ -117,7 +117,7 @@ export const RegisterScreen = () => {
 
             <ModalPickImage
                 openGallery={ pickImage }
-                openCamera={ pickImage }
+                openCamera={ takePhoto }
                 modalUseState={ modalVisible }
                 setModalUseState={ setModalVisible }
             />
