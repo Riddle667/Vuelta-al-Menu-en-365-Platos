@@ -25,10 +25,9 @@ const HomeStyles = StyleSheet.create({
 
     logoLoginImage: {
         position: 'absolute',
-        alignSelf: 'center',
         top: '10%',
-        borderRadius: 50,
-        marginBottom: 10
+        marginBottom: 10,
+        marginHorizontal: 110
 
 
     },

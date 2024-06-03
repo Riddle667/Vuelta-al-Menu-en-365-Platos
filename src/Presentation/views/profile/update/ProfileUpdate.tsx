@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, Image, TextInput, TouchableOpacity, ToastAndroid, StyleSheet, ScrollView, Modal, ActivityIndicator } from 'react-native'
-import { RoundedButton } from '../../../Presentation/components/RoundedButton';
-import { MyColors } from '../../../Presentation/theme/AppTheme';
+import { RoundedButton } from '../../../../Presentation/components/RoundedButton';
+import { MyColors } from '../../../../Presentation/theme/AppTheme';
 import useViewModel from './ViewModel'
-import { CustomTextInput } from '../../components/CustomTextInput';
+import { CustomTextInput } from '../../../components/CustomTextInput';
 import styles from './Styles'
-import { ModalPickImage } from '../../components/ModalPickImage';
+import { ModalPickImage } from '../../../components/ModalPickImage';
 import { StackScreenProps } from '@react-navigation/stack';
-import { RootStackParamList } from '../../../../App';
+import { RootStackParamList } from '../../../../../App';
 
 
-interface Props extends StackScreenProps<RootStackParamList, 'RegisterScreen'> {}
+interface Props extends StackScreenProps<RootStackParamList, 'ProfileUpdateScreen'> {}
 
-export const RegisterScreen = ({navigation, route}: Props) => {
+export const ProfileUpdateScreen = ({navigation, route}: Props) => {
 
-    const{name, lastname, phone, email, image, password, confirmPassword, onChange, register, takePhoto, errorMessage, isValidForm, pickImage, user, loading } = useViewModel();
+    const{name, lastname, phone, image, onChange, register, takePhoto, errorMessage, isValidForm, pickImage, user, loading, onChangeInfoUpdate } = useViewModel();
     const [modalVisible, setModalVisible] = useState(false);
     useEffect(() => {
       if(errorMessage !=''){
@@ -23,15 +23,14 @@ export const RegisterScreen = ({navigation, route}: Props) => {
     }, [errorMessage])
 
     useEffect(() => {
-      if(user?.id !== null && user?.id !== undefined){
-        navigation.replace('ClientTabsNavigator');
-      }
+      onChangeInfoUpdate(user?.name, user?.lastname, user?.phone)
     }, [user])
     
+
    return (
       <View style={styles.LoginScreen}>
           <Image
-          source={require('../../../../assets/cocinero.png') } 
+          source={require('../../../../../assets/cocinero.png') } 
           style={ styles.ImageBackground}
           />
 
@@ -41,8 +40,8 @@ export const RegisterScreen = ({navigation, route}: Props) => {
                 image ==''
               
                 ? <Image
-                    style = {styles.logoLoginImage}
-                    source={require('../../../../assets/Imagen.png')}
+                    style = {styles.logoImage}
+                    source={{uri: user?.image}}
                 />
                 :
                 <Image
@@ -64,7 +63,7 @@ export const RegisterScreen = ({navigation, route}: Props) => {
               <CustomTextInput 
                 placeholder='Nombre'
                 keyboardType='default'
-                image = {require('../../../../assets/Usuario.png')}
+                image = {require('../../../../../assets/Usuario.png')}
                 property={'name'}
                 onChangeText={onChange}
                 value={name}
@@ -73,7 +72,7 @@ export const RegisterScreen = ({navigation, route}: Props) => {
                 <CustomTextInput 
                 placeholder='Apellido'
                 keyboardType='default'
-                image = {require('../../../../assets/Usuario.png')}
+                image = {require('../../../../../assets/Usuario.png')}
                 property={'lastname'}
                 onChangeText={onChange}
                 value={lastname}
@@ -82,40 +81,11 @@ export const RegisterScreen = ({navigation, route}: Props) => {
                 <CustomTextInput 
                 placeholder='Telefono'
                 keyboardType='default'
-                image = {require('../../../../assets/Telefono.png')}
+                image = {require('../../../../../assets/Telefono.png')}
                 property={'phone'}
                 onChangeText={onChange}
                 value={phone}
                  />
-
-                <CustomTextInput 
-                placeholder='Example@gmail.com'
-                keyboardType='email-address'
-                image = {require('../../../../assets/icono correo.png')}
-                property= 'email'
-                onChangeText={onChange}
-                value={email}
-                />
-
-                <CustomTextInput 
-                placeholder='Contraseña'
-                keyboardType='default'
-                image = {require('../../../../assets/icono contraseña.png')}
-                property= 'password'
-                onChangeText={onChange}
-                value={password}
-                secureTextEntry={true}
-                 />
-
-                <CustomTextInput 
-                placeholder='Confirmar Contraseña'
-                keyboardType='default'
-                image = {require('../../../../assets/icono contraseña.png')}
-                property= 'confirmPassword'
-                onChangeText={onChange}
-                value={confirmPassword}
-                secureTextEntry={true}
-                />
             
                 <View style={{marginTop:5}}>
                 

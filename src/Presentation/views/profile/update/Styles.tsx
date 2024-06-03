@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
-import { MyColors } from "../../theme/AppTheme";
+import { MyColors } from "../../../theme/AppTheme";
 
-const RegisterStyles = StyleSheet.create({
+const ProfileUpdateStyles = StyleSheet.create({
     LoginScreen: {
         flex: 1,
         backgroundColor: 'black',
@@ -14,7 +14,7 @@ const RegisterStyles = StyleSheet.create({
 
     form: {
         width: '100%',
-        height: '70%',
+        height: '40%',
         backgroundColor: 'white',
         position: 'absolute',
         bottom: 2,
@@ -100,4 +100,4 @@ const RegisterStyles = StyleSheet.create({
 });
 
 
-export default RegisterStyles;
+export default ProfileUpdateStyles;
