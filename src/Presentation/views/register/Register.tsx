@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Image, Text, View, ScrollView, ToastAndroid, TouchableOpacity, } from 'react-native';
+import { Image, Text, View, ScrollView, ToastAndroid, TouchableOpacity, ActivityIndicator, } from 'react-native';
 import { RoundedButton } from '../../components/RoundedButton';
 import { MyColors } from '../../theme/AppTheme';
 import useViewModel from './ViewModel';
@@ -13,7 +13,7 @@ interface Props extends StackScreenProps<RootStackParamList, 'RegisterScreen'>{}
 
 export const RegisterScreen = ({navigation, route}: Props) => {
 
-    const { name, lastname, email, image, phone, password, confirmPassword, errorMessage, onChange, register, pickImage, takePhoto } = useViewModel();
+    const { name, lastname, email, image, phone, password, confirmPassword, loading, errorMessage, user, onChange, register, pickImage, takePhoto } = useViewModel();
     const [modalVisible, setModalVisible] = useState(false);
 
     useEffect(() => {
@@ -22,15 +22,16 @@ export const RegisterScreen = ({navigation, route}: Props) => {
         }
     }, [errorMessage])
 
-    // useEffect(() => {
-    //     if(user?.id !== null && user?.id !== undefined) {
-    //       navigation.replace('ProfileInfoScreen');
-    //     }
-    //   }, [user])
+    useEffect(() => {
+        if(user?.id !== null && user?.id !== undefined) {
+          navigation.replace('ProfileInfoScreen');
+        }
+      }, [user])
     
 
     return (
         <View style={styles.container}>
+
             <Image
                 source={ require('../../../../assets/chef.jpg') } 
                 style= {styles.imageBackground}
@@ -132,6 +133,15 @@ export const RegisterScreen = ({navigation, route}: Props) => {
                 setModalUseState={ setModalVisible }
             />
 
+            {
+                loading &&
+                <ActivityIndicator 
+                style={styles.loading} 
+                size="large" 
+                color='black' 
+                />
+            }
+            
         </View>
     );
 }

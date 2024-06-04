@@ -18,6 +18,7 @@ const RegisterViewModel = () => {
         password: '',
         confirmPassword: '',
     });
+    const [loading, setLoading] = useState(false);
     const [file, setFile] = useState<ImagePicker.ImagePickerAsset>()
     const { user, getUserSession } = useUserLocal();
 
@@ -55,8 +56,17 @@ const RegisterViewModel = () => {
 
     const register = async () => {
         if (isValidForm()) {
+            setLoading(true);
             const response = await RegisterAuthUseCase(values);
+            setLoading(false);
             console.log('RESULT: ' + JSON.stringify(response));       
+            if(response.success) {
+                await SaveUserLocalUseCase(response.data);
+                getUserSession();
+            }
+            else{
+                setErrorMessage(response.message);
+            }
         }
 
     }
@@ -107,7 +117,10 @@ const RegisterViewModel = () => {
         register,
         pickImage,
         takePhoto,
-        errorMessage
+        errorMessage,
+        loading,
+        user
+        
     }
 }
 
