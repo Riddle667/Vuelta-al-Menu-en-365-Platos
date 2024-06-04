@@ -6,8 +6,12 @@ import useViewModel from './ViewModel';
 import { CustomTextInput } from '../../components/CustomTextInput';
 import styles from './Styles';
 import { ModalPickImage } from '../../components/ModalPickImage';
+import { StackScreenProps } from '@react-navigation/stack';
+import { RootStackParamList } from '../../../../App';
 
-export const RegisterScreen = () => {
+interface Props extends StackScreenProps<RootStackParamList, 'RegisterScreen'>{};
+
+export const RegisterScreen = ({navigation, route}: Props) => {
 
     const { name, lastname, email, image, phone, password, confirmPassword, errorMessage, onChange, register, pickImage, takePhoto } = useViewModel();
     const [modalVisible, setModalVisible] = useState(false);
@@ -17,6 +21,12 @@ export const RegisterScreen = () => {
             ToastAndroid.show(errorMessage, ToastAndroid.LONG);   
         }
     }, [errorMessage])
+
+    // useEffect(() => {
+    //     if(user?.id !== null && user?.id !== undefined) {
+    //       navigation.replace('ProfileInfoScreen');
+    //     }
+    //   }, [user])
     
 
     return (
