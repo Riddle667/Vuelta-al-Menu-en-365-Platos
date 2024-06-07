@@ -38,11 +38,6 @@ const ChangePasswordModel = () => {
   });
 
   const changePassword = async(navigation) => {
-    showMessage({
-      message: "Entrando...",
-      type: "success",
-      icon: "success"
-    })
     const isValid = await isValidForm();
     console.log("Formulario valido?: " + isValid);
     if(isValid){
@@ -51,7 +46,7 @@ const ChangePasswordModel = () => {
         console.log("realizando consulta...");
         console.log("values.password: " + values.password);
         //Se utiliza un inicio de sesión de prueba, debido a que no se cuenta con un inicio de sesión real aún
-        const response = await ChangePasswordUserUseCase(values.password, "ignaciasdaassdo@gmail.com", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzE1OTk2ODY0LCJleHAiOjE3MTYwMTEyNjR9.bbxXDlaiwM1ZQQDaHH2tGxubyuC_5SAU0jvAdd4wLZA");
+        const response = await ChangePasswordUserUseCase(values.password, "ignaciasdaassdo@gmail.com", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzE3NzE4ODY4LCJleHAiOjE3MTc3MzMyNjh9.ZxGZ0uqzmPO183U-fDAYPy9qqU1Hv_AsNySSvEmXkp8");
         console.log("response:" + response)
         if(response){
           console.log('Contraseña actualizada');
@@ -66,6 +61,11 @@ const ChangePasswordModel = () => {
         console.log("Ocurrió un error al cambiar la contraseña: ");
         const rejectErrors: ResponseAPIDelivery = error;
         console.log("Error: " + rejectErrors.message);
+        showMessage({
+          message: "Ocurrió un error al cambiar la contraseña. Es posible que haya expirado tu token.",
+          type: "danger",
+          icon: "danger"
+        })
         if(rejectErrors.errors){
           // setErrosResponse(rejectErrors.errors);
           showMessage({

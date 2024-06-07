@@ -58,7 +58,7 @@ const CreateCategoryModel = () => {
   }
 
   const CreateCategory = async(navigation) => {
-
+    console.log("entrando");
     const isValid = await isValidForm();
     if(isValid){
       console.log("Es valido");
@@ -66,12 +66,20 @@ const CreateCategoryModel = () => {
         const {...data} = values;
         const response = await CreateCategoryUseCase(data);
         if(response && response.success){
+          console.log("if");
           showMessage({
             message: "Categoría creada correctamente",
             type: "success",
             icon: "success"
           })
           navigation.navigate("AdminHomeScreen");
+        }else{
+          console.log("else");
+          showMessage({
+            message: "Error al crear la categoría",
+            type: "danger",
+            icon: "danger"
+          })
         }
       }catch (error){
         console.log(error);

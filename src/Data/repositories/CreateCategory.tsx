@@ -11,7 +11,7 @@ export class CreateCategoryRepositoryImpl implements UserCreateCategoryRepositor
             const path = "/category/create-category";
 
             console.log("ruta: " + HOST_EMULATOR + path);
-
+            console.log("Esperando respuesta de: " + HOST_EMULATOR + path);
             const { data } = await ApiDelivery.post<ResponseAPIDelivery>(path, category);
             console.log("Respuesta recibida del servidor...");
 
