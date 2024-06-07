@@ -14,18 +14,15 @@ interface Props extends StackScreenProps<RootStackParamList, 'ProfileUpdateScree
 
 export const ProfileUpdateScreen = ({navigation, route}: Props) => {
 
-    const{name, lastname, phone, image, onChange, register, takePhoto, errorMessage, isValidForm, pickImage, user, loading, onChangeInfoUpdate } = useViewModel();
+    const{user} = route.params;
+
+    const{name, lastname, phone, image, onChange, update, takePhoto, errorMessage, isValidForm, pickImage, loading, onChangeInfoUpdate, successMessage } = useViewModel(user);
     const [modalVisible, setModalVisible] = useState(false);
     useEffect(() => {
-      if(errorMessage !=''){
-              ToastAndroid.show(errorMessage, ToastAndroid.LONG);
+      if(successMessage !=''){
+              ToastAndroid.show(successMessage, ToastAndroid.LONG);
       }
-    }, [errorMessage])
-
-    useEffect(() => {
-      onChangeInfoUpdate(user?.name, user?.lastname, user?.phone)
-    }, [user])
-    
+    }, [successMessage])
 
    return (
       <View style={styles.LoginScreen}>
@@ -91,7 +88,7 @@ export const ProfileUpdateScreen = ({navigation, route}: Props) => {
                 
                 <RoundedButton text='CONFIRMAR' onPress={() => {
                   if (isValidForm()) {
-                    register();
+                    update();
                   }
                 }} />
 

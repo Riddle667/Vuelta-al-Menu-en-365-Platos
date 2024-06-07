@@ -1,28 +1,24 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import { ApiDelivery } from '../../../../Data/source/remote/api/ApiDelivery';
-import { RegisterAuthUseCase } from '../../../../Domain/useCases/auth/RegisterAuth';
 import * as ImagePicker from 'expo-image-picker'
-import { RegisterWithImageAuthUseCase } from '../../../../Domain/useCases/auth/RegisterWithImageAuth';
 import { SaveUserLocalUseCase } from '../../../../Domain/useCases/userLocal/SaveUserLocal';
 import { userUserLocal } from '../../../hooks/userUserLocal';
+import { UpdateUserUseCase } from '../../../../Domain/useCases/user/UpdateUser';
+import { UpdateWithImageUserUseCase } from '../../../../Domain/useCases/user/UpdateWithImageUser';
+import { User } from '../../../../Domain/entities/User';
+import { ResponseAPIDelivery } from '../../../../Data/source/remote/models/ResponseApiDelivery';
+import { UserContext } from '../../../context/UserContext';
 
 
-const ProfileUpdateViewModel = () => {
+const ProfileUpdateViewModel = (user: User) => {
 
     const [errorMessage, setErrorMessage] = useState('');
-    const [values, setvalues] = useState({
-        name:'',
-        lastname:'',
-        phone:'',
-        email:'',
-        image: '',
-        password:'',
-        confirmPassword:''
-    });
-
+    const [successMessage, setSuccessrMessage] = useState('');
+    const [values, setvalues] = useState(user);
+    const {getUserSession} = userUserLocal();
     const [loading, setLoading] = useState(false)
     const [file, setFile] = useState<ImagePicker.ImagePickerAsset>()
-    const {user, getUserSession} = userUserLocal();
+    const {saveUserSession} =  useContext (UserContext)
 
     const pickImage = async() => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -56,18 +52,27 @@ const ProfileUpdateViewModel = () => {
     }
 
     const onChangeInfoUpdate = (name: string, lastname: string, phone: string) => {
-        setvalues({...values, name, lastname, phone})
-    }
+        setvalues({ ...values, name, lastname, phone });
+    };
 
-    const register = async () => {
+    const update = async () => {
         if(isValidForm()) {
             setLoading(true);
-            const response = await RegisterWithImageAuthUseCase(values as any, file!);
+
+            let response = {} as ResponseAPIDelivery
+            // En el caso de guardar en nube o que no se guarde local cambiar a 'https://'
+            if (values.image?.includes('file:')) { 
+               const response = await UpdateUserUseCase(values);
+            }
+            else{
+                const response = await UpdateWithImageUserUseCase(values, file!);
+
+            }
             setLoading(false)
             console.log('EL RESULTADO ES' + JSON.stringify(response));
             if (response.success) {
-                await SaveUserLocalUseCase(response.data);
-                getUserSession();
+                saveUserSession(response.data);
+                setSuccessrMessage(response.message);
             }
             else {
                 setErrorMessage(response.message);
@@ -89,27 +94,7 @@ const ProfileUpdateViewModel = () => {
             setErrorMessage('Debe ingresar un telefono')
             return false;
         }
-        if (values.email == '') {
-            setErrorMessage('Debe ingresar un correo electronico')
-            return false;
-        }
-        if (values.password == '') {
-            setErrorMessage('Debe ingresar una contraseña')
-            return false;
-        }
-        if (values.confirmPassword == '') {
-            setErrorMessage('Debe ingresar una contraseña')
-            return false;
-        }
-        if (values.password !== values.confirmPassword) {
-            setErrorMessage('las contraseñas no son iguales')
-            return false;
-        }
 
-        if (values.image === '') {
-            setErrorMessage('Debe seleccionar una imagen')
-            return false;
-        }
 
 
         return true;
@@ -119,14 +104,15 @@ const ProfileUpdateViewModel = () => {
     return {
         ...values,
         onChange,
-        register,
+        update,
         errorMessage,
         isValidForm,
         pickImage,
         takePhoto,
         user,
         loading,
-        onChangeInfoUpdate
+        onChangeInfoUpdate,
+        successMessage
     }
 }
 export default ProfileUpdateViewModel;

@@ -9,6 +9,8 @@ import { AdminTabsNavigator } from './src/Presentation/navigator/AdminTabsNaviga
 import { ClientTabsNavigator } from './src/Presentation/navigator/ClientTabsNavigator';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ProfileUpdateScreen } from './src/Presentation/views/profile/update/ProfileUpdate';
+import { User } from './src/Domain/entities/User';
+import { UserProvider } from './src/Presentation/context/UserContext';
 
 
 
@@ -18,7 +20,7 @@ export type RootStackParamList= {
   RolesScreen: undefined,
   AdminTabsNavigator: undefined,
   ClientTabsNavigator: undefined,
-  ProfileUpdateScreen: undefined
+  ProfileUpdateScreen: {user: User}
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -26,6 +28,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const App = () => {
   return (
     <NavigationContainer>
+      <UserState>
       <Stack.Navigator screenOptions={{
         headerShown: false
       }}>
@@ -71,8 +74,17 @@ const App = () => {
         />
 
       </Stack.Navigator>
+      </UserState>
     </NavigationContainer>
   );
 };
+
+const UserState = ({children}: any) => {
+  return (
+    <UserProvider>
+      {children}
+    </UserProvider>
+  )
+}
 
   export default App;
