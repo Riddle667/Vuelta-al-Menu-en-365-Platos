@@ -20,6 +20,20 @@ export const ProfileInfoScreen = ({navigation, route}: Props) => {
         }}
         title='Cerrar sesion'
       />
+
+      <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 10}}>  
+        <Button 
+        onPress={() => {
+          removeSession();
+          navigation.navigate('CreateProductScreen');
+        }}
+        title='Productos'
+      />
+      </View>
+      
     </View>
+
+    
+
   )
 }
