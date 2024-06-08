@@ -2,27 +2,51 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AdminCategoryListScreen } from '../views/admin/category/list/CategoryList';
 import { AdminOrderListScreen } from '../views/admin/order/list/OrderList';
 import { ProfileInfoScreen } from '../views/profile/info/ProfileInfo';
-import { Image } from 'react-native';
+import { Image, TouchableOpacity } from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { RootStackParamList } from './MainStackNavigator';
+import AdminCategoryNavigator from './AdminCategoryNavigator';
 
 const Tab = createBottomTabNavigator();
 
-export const AdminTabsNavigator = () => {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen 
-      name="AdminCategoryList" 
-      component={AdminCategoryListScreen} 
-      options={{
-        title: 'Categorias',
-        tabBarLabel: 'Categorias',
-        tabBarIcon: ({color}) => (
 
-          <Image
-            source ={require('../../../assets/categoria admin.png')}
-            style={{width: 40, height:40}}
-            />
-         )
+const Stack = createNativeStackNavigator<RootStackParamList>();
+
+
+export const AdminTabsNavigator = () => {
+  
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false
       }}
+    >
+      <Tab.Screen 
+      name="AdminCategoryNavigator" 
+      component={AdminCategoryNavigator} 
+      options={({route, navigation}) => (
+        {
+          title: 'Categorias',
+          tabBarLabel: 'Categorias',
+          headerShown: false,
+          tabBarIcon: () => (
+  
+            <Image
+              source ={require('../../../assets/categoria admin.png')}
+              style={{width: 40, height:40}}
+              />
+           ),
+           headerRight: () => (
+            <TouchableOpacity onPress={ () => navigation.navigate('AdminCategoryCreateScreen')}>
+              <Image
+                source = {require('../../../assets/boton-mas.png')}
+                style = {{width: 35, height:35, marginRight: 20, marginTop: 5 }}
+              />
+            </TouchableOpacity>
+           )
+        }
+      )}
+      
       />
       <Tab.Screen 
       name="AdminOrderList" 
@@ -60,3 +84,4 @@ export const AdminTabsNavigator = () => {
     </Tab.Navigator>
   );
 };
+

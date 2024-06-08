@@ -2,11 +2,10 @@ import React, { useEffect } from 'react'
 import { View, Text, Button, Image, TouchableOpacity } from 'react-native'
 import useViewModel from './ViewModel'
 import { StackNavigationProp, StackScreenProps } from '@react-navigation/stack';
-import { RootStackParamList } from '../../../../../App';
 import styles from './Styles'
 import { useNavigation } from '@react-navigation/native';
 import { RoundedButton } from '../../../components/RoundedButton';
-
+import { RootStackParamList } from '../../../navigator/MainStackNavigator';
 
 
 

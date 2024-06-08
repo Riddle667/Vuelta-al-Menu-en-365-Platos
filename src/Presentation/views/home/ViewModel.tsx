@@ -13,7 +13,7 @@ const HomeViewModel = () => {
         password: ''
     })
 
-    //const {user, getUserSession} = userUserLocal();
+;
     const {user, saveUserSession} = useContext(UserContext);
     console.log('USUARIO EN SESION: ' + JSON.stringify(user));
 
