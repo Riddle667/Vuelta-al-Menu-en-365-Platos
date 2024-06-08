@@ -86,7 +86,17 @@ const ProductStyles = StyleSheet.create({
         alignSelf: 'center', 
         top: '4%',
         flexDirection: 'row',
-    }
+    },
+    errorText: {
+        color: 'white', 
+        fontSize: 15,
+        marginBottom: 10,
+        marginTop: 6,
+        backgroundColor: MyColors.error, 
+        padding: 5, 
+        borderRadius: 5, 
+        textAlign: 'center', 
+    },
 
 });
 

@@ -1,24 +1,22 @@
 import React, { useState } from 'react';
-import { ApiDelivery } from '../../../Data/sources/remote/api/ApiDelivery';
-import { RegisterAuthUseCase } from '../../../Domain/useCases/auth/RegisterAuth';
 import { Image } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { SaveUserLocalUseCase } from '../../../Domain/useCases/userLocal/SaveUserLocal';
+import { CreateProductUseCase } from '../../../Domain/useCases/userLocal/CreateProductUseCase';
+import { ProductRepositoryImpl } from '../../../Data/repositories/ProductRepositoryImpl';
 import { useUserLocal } from '../../hooks/useUserLocal';
+import { Product } from '../../../Domain/entities/Product';
+
+const productRepository = new ProductRepositoryImpl();
+const createProductUseCase = new CreateProductUseCase(productRepository);
 
 const ProductViewModel = () => {
     const [errorMessage, setErrorMessage] = useState('');
-    const [values, setValues] = useState({
-        name: '',
-        lastname: '',
-        phone: '',
-        email: '',
-        images: ['', '', ''], // Inicializar con strings vacíos para cada ranura de imagen
+    const [errors, setErrors] = useState<{ [key: string]: string }>({});
+    const [values, setValues] = useState<Product>({
         productName: '',
         productDescription: '',
         productPrice: '',
-        password: '',
-        confirmPassword: '',
+        images: ['', '', ''],
     });
     const [loading, setLoading] = useState(false);
     const [file, setFile] = useState<ImagePicker.ImagePickerAsset[]>([]);
@@ -60,43 +58,53 @@ const ProductViewModel = () => {
         }
     }
 
-    const onChange = (property: string, value: any) => {
+    const onChange = (property: keyof Product, value: any) => {
         setValues({ ...values, [property]: value });
+        setErrors({ ...errors, [property]: '' }); // Limpiar el error al cambiar el valor
     }
 
     const register = async () => {
         if (isValidForm()) {
             setLoading(true);
-            const response = await RegisterAuthUseCase(values);
-            setLoading(false);
-            console.log('RESULT: ' + JSON.stringify(response));
-            if (response.success) {
-                await SaveUserLocalUseCase(response.data);
-                getUserSession();
-            } else {
-                setErrorMessage(response.message);
+            try {
+                await createProductUseCase.execute(values);
+                setLoading(false);
+                // Manejar el caso exitoso, por ejemplo, navegar a otra pantalla
+            } catch (error) {
+                setLoading(false);
+                if (error instanceof Error) {
+                    setErrorMessage(error.message);
+                } else {
+                    setErrorMessage('An unexpected error occurred');
+                }
             }
         }
     }
 
     const isValidForm = (): boolean => {
-        if (values.name === '') {
-            setErrorMessage('El campo nombre es requerido');
-            return false;
+        let valid = true;
+        let newErrors: { [key: string]: string } = {};
+
+        if (values.productName === '') {
+            newErrors.productName = 'El campo nombre del producto es requerido';
+            valid = false;
         }
-        if (values.lastname === '') {
-            setErrorMessage('El campo descripcion es requerido');
-            return false;
+        if (values.productDescription === '') {
+            newErrors.productDescription = 'El campo descripción del producto es requerido';
+            valid = false;
         }
-        if (values.email === '') {
-            setErrorMessage('El campo precio es requerido');
-            return false;
+        if (values.productPrice === '') {
+            newErrors.productPrice = 'El campo precio del producto es requerido';
+            valid = false;
         }
-        return true;
+
+        setErrors(newErrors);
+        return valid;
     }
 
     return {
         ...values,
+        errors,
         onChange,
         register,
         pickImage,

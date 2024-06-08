@@ -2,23 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { Image, Text, View, ScrollView, ToastAndroid, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { RoundedButton } from '../../components/RoundedButton';
 import { MyColors } from '../../theme/AppTheme';
-import useViewModel from './ViewModel';
+import useViewModel from './ViewModel';  // Asegúrate de que la ruta sea correcta
 import { CustomTextInput } from '../../components/CustomTextInput';
-import styles from './Styles';
 import { ModalPickImage } from '../../components/ModalPickImage';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../../../App';
+import styles from './Styles';  // Asegúrate de que la ruta sea correcta
 
 interface Props extends StackScreenProps<RootStackParamList, 'ProductScreen'> {};
 
 export const ProductScreen = ({ navigation, route }: Props) => {
     const {
         productName,
-        productDescription,  // Cambiar a minúsculas
-        productPrice,        // Cambiar a minúsculas
-        images,              // Asegúrate de que `images` sea un array en el ViewModel
+        productDescription,
+        productPrice,
+        images,
         loading,
         errorMessage,
+        errors,
         user,
         onChange,
         register,
@@ -47,12 +48,12 @@ export const ProductScreen = ({ navigation, route }: Props) => {
     };
 
     const handleImagePick = () => {
-        pickImage(currentImageIndex); // Pasar el índice al recoger la imagen
+        pickImage(currentImageIndex);
         setModalVisible(false);
     };
 
     const handleTakePhoto = () => {
-        takePhoto(currentImageIndex); // Pasar el índice al tomar la foto
+        takePhoto(currentImageIndex);
         setModalVisible(false);
     };
 
@@ -90,6 +91,7 @@ export const ProductScreen = ({ navigation, route }: Props) => {
                         onChangeText={onChange}
                         value={productName}
                     />
+                    {errors.productName && <Text style={styles.errorText}>{errors.productName}</Text>}
 
                     <CustomTextInput
                         placeholder='Descripción del producto'
@@ -99,6 +101,7 @@ export const ProductScreen = ({ navigation, route }: Props) => {
                         onChangeText={onChange}
                         value={productDescription}
                     />
+                    {errors.productDescription && <Text style={styles.errorText}>{errors.productDescription}</Text>}
 
                     <CustomTextInput
                         placeholder='Precio del producto'
@@ -108,6 +111,7 @@ export const ProductScreen = ({ navigation, route }: Props) => {
                         onChangeText={onChange}
                         value={productPrice}
                     />
+                    {errors.productPrice && <Text style={styles.errorText}>{errors.productPrice}</Text>}
 
                     <View style={{ marginTop: 30 }}>
                         <RoundedButton text='CONFIRMAR DATOS' onPress={() => register()} />
@@ -126,7 +130,7 @@ export const ProductScreen = ({ navigation, route }: Props) => {
                 <ActivityIndicator
                     style={styles.loading}
                     size="large"
-                    color='black'
+                    color={MyColors.primary}
                 />
             )}
         </View>
