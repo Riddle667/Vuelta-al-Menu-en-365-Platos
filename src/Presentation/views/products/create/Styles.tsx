@@ -1,4 +1,4 @@
-import { MyColors } from "../../theme/AppTheme";
+import { MyColors } from "../../../theme/AppTheme";
 import { StyleSheet } from "react-native";
 
 const ProductStyles = StyleSheet.create({

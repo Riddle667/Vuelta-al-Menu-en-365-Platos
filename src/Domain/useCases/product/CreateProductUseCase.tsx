@@ -1,5 +1,5 @@
-import { ProductRepository } from '../../../Domain/repositories/ProductRepository';
-import { Product } from '../../../Domain/entities/Product';
+import { ProductRepository } from '../../repositories/ProductRepository';
+import { Product } from '../../entities/Product';
 
 export class CreateProductUseCase {
   private productRepository: ProductRepository;

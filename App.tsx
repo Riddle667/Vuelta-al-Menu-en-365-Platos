@@ -5,15 +5,16 @@ import { HomeScreen } from './src/Presentation/views/home/Home';
 import { RegisterScreen } from './src/Presentation/views/register/Register';
 import { ProfileInfoScreen } from './src/Presentation/views/profile/info/ProfileInfo';
 import { RolesScreen } from './src/Presentation/views/roles/Roles';
-import { ProductScreen } from './src/Presentation/views/products/Product';
+import { ProductScreen } from './src/Presentation/views/products/create/Product';
+import { ProductListScreen } from './src/Presentation/views/products/list/ProductList';
 
 export type RootStackParamList = {
   HomeScreen: undefined,
   RegisterScreen: undefined,
   ProfileInfoScreen: undefined,
   RolesScreen: undefined,
-  CreateProductScreen: undefined,
-  ProductScreen: undefined
+  ProductScreen: undefined,
+  ProductListScreen: undefined,
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -24,6 +25,19 @@ const App = () => {
       <Stack.Navigator screenOptions={{
         headerShown: false
       }}>
+        <Stack.Screen 
+          name="HomeScreen" 
+          component={HomeScreen} 
+        />
+        
+        <Stack.Screen 
+          name="ProductListScreen" 
+          component={ ProductListScreen }
+          options={{
+            headerShown: true,
+            title: 'Productos'
+          }}
+        />
 
         <Stack.Screen 
           name="ProductScreen" 
@@ -34,10 +48,7 @@ const App = () => {
           }}
         />
 
-        <Stack.Screen 
-          name="HomeScreen" 
-          component={HomeScreen} 
-        />
+        
         <Stack.Screen 
           name="RegisterScreen" 
           component={RegisterScreen} 

@@ -9,4 +9,12 @@ export class ProductRepositoryImpl implements ProductRepository {
       throw new Error('Error creating product');
     }
   }
+
+  async getProducts(): Promise<Product[]> {
+    const response = await axios.get('URL_DEL_BACKEND/api/products');
+    if (response.status !== 200) {
+      throw new Error('Error fetching products');
+    }
+    return response.data;
+  }
 }

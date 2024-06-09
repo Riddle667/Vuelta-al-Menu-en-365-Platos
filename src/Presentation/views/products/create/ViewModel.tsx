@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Image } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { CreateProductUseCase } from '../../../Domain/useCases/userLocal/CreateProductUseCase';
-import { ProductRepositoryImpl } from '../../../Data/repositories/ProductRepositoryImpl';
-import { useUserLocal } from '../../hooks/useUserLocal';
-import { Product } from '../../../Domain/entities/Product';
+import { CreateProductUseCase } from '../../../../Domain/useCases/product/CreateProductUseCase';
+import { ProductRepositoryImpl } from '../../../../Data/repositories/ProductRepositoryImpl';
+import { useUserLocal } from '../../../hooks/useUserLocal';
+import { Product } from '../../../../Domain/entities/Product';
 
 const productRepository = new ProductRepositoryImpl();
 const createProductUseCase = new CreateProductUseCase(productRepository);

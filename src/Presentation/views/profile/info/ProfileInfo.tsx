@@ -25,7 +25,7 @@ export const ProfileInfoScreen = ({navigation, route}: Props) => {
         <Button 
         onPress={() => {
           removeSession();
-          navigation.navigate('CreateProductScreen');
+          navigation.navigate('ProductScreen');
         }}
         title='Productos'
       />
