@@ -1,4 +1,4 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
 export const LocalStorage = () => {
 
@@ -7,34 +7,30 @@ export const LocalStorage = () => {
         try {
             await AsyncStorage.setItem(key, value);
         } catch (error) {
-            console.log('ERROR EN LOCAL STORAGE: ' + error);
+            console.log("ERROR to local storage ", error);
         }
-    };
+    }
 
-    const getItem = async (key: string) => {
+    const getItem = (key: string) => {
         try {
-            const item = await AsyncStorage.getItem(key);
+            const item = AsyncStorage.getItem(key);
             return item;
         } catch (error) {
-            console.log('ERROR to local storage: ' + error);
+            console.log("ERROR to local storage ", error);
         }
-    };
+    }
 
-    const remove = async (key: string) => {
+    const removeItem = async (key: string) => {
         try {
             await AsyncStorage.removeItem(key);
         } catch (error) {
-            console.log('ERROR to local storage: ' + error);
+            console.log("ERROR to local storage ", error);
         }
-    };
-
+    }
 
     return {
         save,
         getItem,
-        remove
+        removeItem
     }
-
-
-
 }
