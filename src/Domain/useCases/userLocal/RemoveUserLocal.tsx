@@ -1,8 +1,7 @@
 import { UserLocalRepositoryImpl } from "../../../Data/repositories/UserLocalRepository";
-import { User } from "../../entities/User";
 
-const { remove } = new UserLocalRepositoryImpl();
+const { removeItem } = new UserLocalRepositoryImpl();
 
-export const RemoveUserLocalUseCase = async () => {
-    return await remove();
+export const RemoveUserUseCase = async () => {
+    return removeItem();
 }
