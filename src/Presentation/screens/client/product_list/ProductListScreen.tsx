@@ -1,11 +1,14 @@
-import { View, Text, TouchableOpacity } from 'react-native' 
+import { View, Text, TouchableOpacity } from 'react-native'
 import { styles } from './Styles';
 import { VisualizeProductDetailScreen } from '../visualize_product_detail/VisualizeProductDetailScreen';
 import { useEffect, useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
+import { useShoppingCart } from '../../../context/shopping_cart/ShoppingCartContext';
 
 export const ProductListScreen = ({ navigation }) => {
-  
+
+   const { shoppingCart, setShoppingCart } = useShoppingCart();
+
   const images = [
     "https://www.istockphoto.com/es/search/2/image?mediatype=&phrase=url&utm_source=pixabay&utm_medium=affiliate&utm_campaign=SRP_image_sponsored&utm_content=https%3A%2F%2Fpixabay.com%2Fes%2Fimages%2Fsearch%2Furl%2F&utm_term=url",
     "https://www.istockphoto.com/es/search/2/image?mediatype=&phrase=url&utm_source=pixabay&utm_medium=affiliate&utm_campaign=SRP_image_sponsored&utm_content=https%3A%2F%2Fpixabay.com%2Fes%2Fimages%2Fsearch%2Furl%2F&utm_term=url",
@@ -14,7 +17,6 @@ export const ProductListScreen = ({ navigation }) => {
 
   const [active , setActive] = useState(false as boolean)
   const [data, setData] = useState([] as {})
-  const [shoppingCart, setShoppingCart] = useState([])
   const [productCounter, setProductCounter] = useState(0)
   const onTouchStartHandle = (data) => {
     setActive(true)
@@ -34,7 +36,9 @@ export const ProductListScreen = ({ navigation }) => {
   }
 
   const handleCartOpen = () => {
-    console.log('handleCartOpen')
+    console.log(shoppingCart)
+    if(productCounter < 1) return alert("No hay productos en el carrito")
+    navigation.navigate('ShoppingCartScreen', { "navigation": navigation, "shoppingCart": shoppingCart})
   }
 
   useEffect(() => {
@@ -44,7 +48,9 @@ export const ProductListScreen = ({ navigation }) => {
   return (
     <>
       <View style={styles.cartSection}>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={handleCartOpen}
+        >
           <View style={styles.cartContainer}>
             <Ionicons name="cart" color="white" size={30} />
           </View>

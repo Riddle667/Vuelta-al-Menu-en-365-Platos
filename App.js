@@ -12,6 +12,8 @@ import { VisualizeProductDetailScreen } from './src/Presentation/screens/client/
 import { ProductListScreen } from './src/Presentation/screens/client/product_list/ProductListScreen.tsx'; 
 import FlashMessage from "react-native-flash-message";
 import { Ionicons } from '@expo/vector-icons';
+import { ShoppingCartScreen } from './src/Presentation/screens/client/shopping_cart/ShoppingCartScreen.tsx';
+import { ShoppingCartProvider } from './src/Presentation/context/shopping_cart/ShoppingCartContext.tsx';
 
 const Stack = createStackNavigator();
 
@@ -26,23 +28,26 @@ const CustomBackButton = ({navigation}) => {
 export default function App() {
   return (
     // <LoginScreen/>
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName={LoginScreen}
-        screenOptions={({ navigation, route }) => ({
-          headerTitle: "",
-          headerLeft: route.name != "LoginScreen" ? () => <CustomBackButton navigation={navigation}/> : "",
-        })}
-      >
-        <Stack.Screen name="LoginScreen" component={LoginScreen} />
-        <Stack.Screen name="RegisterScreen" component={RegisterScreen} />      
-        <Stack.Screen name="AdminHomeScreen" component={AdminHomeScreen} />      
-        <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen} />   
-        <Stack.Screen name="CreateCategoryScreen" component={CreateCategoryScreen} />   
-        <Stack.Screen name="VisualizeProductDetailScreen" component={VisualizeProductDetailScreen} />   
-        <Stack.Screen name="ProductListScreen" component={ProductListScreen} />   
-      </Stack.Navigator>
-      <FlashMessage position="top" />
-    </NavigationContainer>
+    <ShoppingCartProvider>
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName={LoginScreen}
+          screenOptions={({ navigation, route }) => ({
+            headerTitle: "",
+            headerLeft: route.name != "LoginScreen" ? () => <CustomBackButton navigation={navigation}/> : "",
+          })}
+        >
+          <Stack.Screen name="LoginScreen" component={LoginScreen} />
+          <Stack.Screen name="RegisterScreen" component={RegisterScreen} />      
+          <Stack.Screen name="AdminHomeScreen" component={AdminHomeScreen} />      
+          <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen} />   
+          <Stack.Screen name="CreateCategoryScreen" component={CreateCategoryScreen} />   
+          <Stack.Screen name="VisualizeProductDetailScreen" component={VisualizeProductDetailScreen} />   
+          <Stack.Screen name="ProductListScreen" component={ProductListScreen} />   
+          <Stack.Screen name="ShoppingCartScreen" component={ShoppingCartScreen} />
+        </Stack.Navigator>
+        <FlashMessage position="top" />
+      </NavigationContainer>
+    </ShoppingCartProvider>
   );
 }

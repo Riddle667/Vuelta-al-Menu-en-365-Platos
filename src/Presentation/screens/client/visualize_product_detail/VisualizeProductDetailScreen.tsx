@@ -12,7 +12,6 @@ import { useEffect, useState } from 'react';
 export const VisualizeProductDetailScreen = ({ navigation, active, setActive, data, expanded, addProduct}) => {
   
   const [amount, setAmount] = useState(1)
-  
 
   console.log('VisualizeProductDetailScreen')
 
