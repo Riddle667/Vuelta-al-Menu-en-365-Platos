@@ -4,7 +4,6 @@ import styles from './Styles'
 import { CustomTextInput } from '../../../../components/CustomTextInput'
 import useViewModel from './ViewModel'
 import { RoundedButton } from '../../../../components/RoundedButton'
-import { ModalPickImage } from '../../../../components/ModalPickImage'
 import { MyColors, MyStyles } from '../../../../theme/AppTheme'
 import { StackScreenProps } from '@react-navigation/stack'
 import { ClientStackParamList } from '../../../../navigator/ClientStackNavigator'
@@ -19,7 +18,7 @@ export const ClientAddressCreateScreen = ({navigation,route }:Props) => {
     useEffect(() => {
 
       if (route.params) {
-        onChangeRefPoint(route.params.refPoint, route.params.latitude, route.params.longitude)
+        onChangeRefPoint(route.params?.refPoint, route.params?.latitude, route.params?.longitude)
       }
     }, [route.params?.refPoint])
 

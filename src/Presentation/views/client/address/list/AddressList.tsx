@@ -7,10 +7,6 @@ export const ClientAddressListScreen = () => {
 
   const {address, getAddress, checked, changeRadioValue} = useViewModel()
 
-  useEffect(() => {
-    getAddress()
-  }, [])
-  
   return (
     <View style= {{flex:1, backgroundColor: 'white'}}>
       <FlatList

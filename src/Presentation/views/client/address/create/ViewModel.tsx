@@ -41,8 +41,8 @@ const ClientAddressCreateViewModel = () => {
       setResponseMessage(response.message)
       if (response.success) {
           resetForm(),
-         user.address = values,
-         user.address.id = response.data,
+          //user.address = values        Da ERROR utilizar user.address
+         // user.address.id = response.data     Da ERROR utilizar user.address
           await saveUserSession(user)
           getUserSession()
 

@@ -13,7 +13,7 @@ const ClientAddressListViewModel = () => {
     useEffect(() => {
         getAddress()
         if(user.address !== null && user.address !== undefined){
-            changeRadioValue(user.address!)
+            //changeRadioValue(user.address!)     Da ERROR utilizar user.address
             console.log('Usuario actual en sesion' + JSON.stringify(user))
         }
     }, [user])
@@ -21,7 +21,7 @@ const ClientAddressListViewModel = () => {
 
     const changeRadioValue = (address: Address) => {
         setChecked(address.id!)
-        user.address = address
+        //user.address = address     Da ERROR utilizar user.address
         saveUserSession(user)
     }
 
