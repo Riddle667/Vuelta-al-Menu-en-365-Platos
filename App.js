@@ -8,6 +8,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { AdminHomeScreen } from './src/Presentation/screens/admin/home/AdminHomeScreen';
 import { ChangePasswordScreen } from './src/Presentation/screens/common/change_password/ChangePasswordScreen.tsx';
 import { CreateCategoryScreen } from './src/Presentation/screens/admin/category/create/CreateCategoryScreen.tsx';
+import { VisualizeProductDetailScreen } from './src/Presentation/screens/client/visualize_product_detail/VisualizeProductDetailScreen.tsx';
+import { ProductListScreen } from './src/Presentation/screens/client/product_list/ProductListScreen.tsx'; 
 import FlashMessage from "react-native-flash-message";
 import { Ionicons } from '@expo/vector-icons';
 
@@ -37,6 +39,8 @@ export default function App() {
         <Stack.Screen name="AdminHomeScreen" component={AdminHomeScreen} />      
         <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen} />   
         <Stack.Screen name="CreateCategoryScreen" component={CreateCategoryScreen} />   
+        <Stack.Screen name="VisualizeProductDetailScreen" component={VisualizeProductDetailScreen} />   
+        <Stack.Screen name="ProductListScreen" component={ProductListScreen} />   
       </Stack.Navigator>
       <FlashMessage position="top" />
     </NavigationContainer>
