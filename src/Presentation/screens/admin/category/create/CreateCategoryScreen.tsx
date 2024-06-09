@@ -40,7 +40,7 @@ export const CreateCategoryScreen = ({navigation}) => {
           style={styles.image}
           source={{uri: (image == "") ? 'https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg' : image}}
         />
-        {errorsMessages.image && <Text style={styles.errorMessage}>{errorsMessages.image}</Text>}
+        {errorsMessages.image && <Text style={styles.errorMessageImage }>{errorsMessages.image}</Text>}
         <TouchableOpacity 
           style={styles.button}
           onPress={() => CreateCategory(navigation)}  
