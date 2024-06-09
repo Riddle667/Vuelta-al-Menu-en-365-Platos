@@ -30,7 +30,19 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.dsm.vueltaalmenuen365platos",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDzRBf8BGy_Y_ec43es2OaIDUyA2xas37Y"
+        }
+      },
+      "permissions": [
+        "ACCESS_BACKGROUND_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "FOREGROUND_SERVICE"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
