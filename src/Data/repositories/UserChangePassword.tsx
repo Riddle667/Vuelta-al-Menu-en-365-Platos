@@ -10,9 +10,9 @@ export class UserChangePasswordRepositoryImpl implements UserChangePasswordRepos
     async ChangePassword(password: string, email: string, session_token: string): Promise<ResponseAPIDelivery> {
         try {
 
-            console.log(password);
-            console.log(email);
-            console.log(session_token);
+            console.log("password: " + password);
+            console.log("email: " + email);
+            console.log("token: " + session_token);
             const path = "/user/change-password";
 
             const { data } = await ApiDelivery.put<ResponseAPIDelivery>(path, { email: email, newPassword: password, token: session_token}, {

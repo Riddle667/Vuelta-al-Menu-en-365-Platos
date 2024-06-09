@@ -46,7 +46,7 @@ const ChangePasswordModel = () => {
         console.log("realizando consulta...");
         console.log("values.password: " + values.password);
         //Se utiliza un inicio de sesión de prueba, debido a que no se cuenta con un inicio de sesión real aún
-        const response = await ChangePasswordUserUseCase(values.password, "ignaciasdaassdo@gmail.com", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzE3NzE4ODY4LCJleHAiOjE3MTc3MzMyNjh9.ZxGZ0uqzmPO183U-fDAYPy9qqU1Hv_AsNySSvEmXkp8");
+        const response = await ChangePasswordUserUseCase(values.password, "ignaciasdaassdo@gmail.com", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzE3OTMwNjUxLCJleHAiOjE3MTc5NDUwNTF9.4zQEihaVqO6owYMu7o2nSfjbS7EHGbD7umhJxAeEQn0");
         console.log("response:" + response)
         if(response){
           console.log('Contraseña actualizada');

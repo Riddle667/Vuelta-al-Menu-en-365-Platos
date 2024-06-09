@@ -46,7 +46,15 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
     width: '70%',
     transform: [{ translateX: 50 }, {translateY: -10}],
-    borderRadius: 5,
+    zIndex: -1,
+  },
+  errorMessageImage: {
+       color: '#FF4141',
+    fontSize: 12,
+    textAlign: 'center',
+    marginBottom: 20,
+    width: '70%',
+    transform: [{ translateX: 50 }, {translateY: 20}],
     zIndex: -1,
   },
   inputContainer: {
@@ -126,8 +134,9 @@ export const styles = StyleSheet.create({
     width: 100,
     height: 100,
     zIndex: 1,
-    transform: [{ translateX: 140 }, { translateY: 15 }],
     borderColor: "black",
+    left: "50%",
+    transform: [{ translateX: -50 }],
     borderWidth: 2,
   }
 });

@@ -102,11 +102,11 @@ const CreateCategoryModel = () => {
       return true;
     } catch (error){
       const errors: Record<string, string> = {};
-      // error.inner.forEach((error: yup.ValidationError) => {
-      //   errors[error.path] = error.message;
-      // });
+      error.inner.forEach((error: yup.ValidationError) => {
+        errors[error.path] = error.message;
+      });
+      console.log("error");
       setErrorMessages(errors);
-      console.log(errors);
       return false;
     }
   }
