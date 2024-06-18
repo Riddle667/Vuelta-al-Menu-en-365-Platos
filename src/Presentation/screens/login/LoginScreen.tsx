@@ -1,55 +1,83 @@
-import React from 'react';
-import { View, Text, ScrollView, TextInput, TouchableOpacity, Image } from 'react-native';
-import { styles } from './Styles';
+import React from 'react'
+import { View, Text, Image, TouchableOpacity, ScrollView, TextInput } from 'react-native'
+import { StackScreenProps } from '@react-navigation/stack'
+import { RootStackParamsList } from '../../navigator/MainAppStack'
+import Loginstyles from './Styles'
+import { RoundedButton } from '../../components/RoundedButton'
+import LoginViewModel from './ViewModel'
 
-export const LoginScreen = ({navigation}) => {
-  return(
-    <View style={styles.container}>
-      <Image
-        style={styles.image} 
-        source={require('../../../../assets/background.png')}
-      />
-      <View style={styles.form}>
-        <Text style={styles.loginText}>Inicio de Sesión</Text>
-        <View style={styles.inputSection}>
-          <View style={styles.inputContainer}>
+interface Props extends StackScreenProps<RootStackParamsList, 'LoginScreen'> {}
+
+export const LoginScreen = ({navigation, route}: Props) => {
+
+  const { email, password, onChange, setValues, login} = LoginViewModel();
+
+  return (
+    <View style={Loginstyles.container}>
+        <Image
+            source={ require('../../../../assets/chef.jpg') } 
+            style= {Loginstyles.imageBackground}
+        />
+        <View style={ Loginstyles.logoContainer }>
             <Image
-              style={styles.inputImage}
-              source={require('../../../../assets/email-icon.png')}
-            />
+                source={ require('../../../../assets/logo.png') }
+                style={ Loginstyles.logo }
+            /> 
+            
+            <Text style={ Loginstyles.logoText }>Vuelta al menu en 365 platos</Text>
+            
+        </View>
+
+        <View style={ Loginstyles.form }>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
+          >
+
+            <Text style={ Loginstyles.formText }>Iniciar Sesión</Text>
+            <View style={ Loginstyles.formInput }>
+              <Image
+                source={ require('../../../../assets/email.png') }
+                style={ Loginstyles.formIcon }
+              />
+
             <TextInput
-              style={styles.input}
-              placeholder={'email'}
+              style={Loginstyles.formTextInput}
+              placeholder={'Ingrese su email'}
               keyboardType='default'
+              value={email}
+              onChangeText={text => onChange('email', text)}
               secureTextEntry={false}
             />
-          </View>
-          <View style={styles.inputContainer}>
-            <Image
-              style={styles.inputImage}
-              source={require('../../../../assets/password-icon.png')}
-            />
-            <TextInput
-              style={styles.input}
-              placeholder={'contraseña'}
-              keyboardType='default'
-              secureTextEntry={true}
-            />
+            </View>
 
+            <View style={ Loginstyles.formInput }>
+              <Image
+                source={ require('../../../../assets/password-icon.png') }
+                style={ Loginstyles.formIcon }
+              />
+              <TextInput
+                style={Loginstyles.formTextInput}
+                placeholder={'******'}
+                keyboardType='default'
+                value={password}
+                onChangeText={text => onChange('password', text)}
+                secureTextEntry={true}
+              />
+
+            </View>
+            <View style= {{ marginTop: 30 }}>
+              <RoundedButton text='Iniciar Sesión' onPress={ () => login() } />
+                <View style= { Loginstyles.formRegisterText }>
+                <Text>¿No estás registrado?</Text>
+                <TouchableOpacity onPress={ () => navigation.navigate('RegisterScreen') }>
+                <Text style= { Loginstyles.formRegisterText }>Hazlo ahora</Text>
+            </TouchableOpacity>
+            
           </View>
         </View>
-        <TouchableOpacity 
-          style={styles.loginButton}
-          onPress={() => navigation.navigate('AdminHomeScreen')}  
-        >
-          <Text style={styles.loginButtonText}>INGRESAR</Text>
-        </TouchableOpacity>
-        <TouchableOpacity 
-          onPress={() => navigation.navigate('RegisterScreen')}  
-        >
-          <Text style={styles.registerLink}>¿No tienes una cuenta? Regístrate</Text>
-        </TouchableOpacity>
-      </View>
+          </ ScrollView>
+        </View>
     </View>
   )
 }
