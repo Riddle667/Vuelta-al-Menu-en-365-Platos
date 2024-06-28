@@ -1,23 +1,24 @@
 import React from "react";
-import { Keyboard, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { CustomColors } from "../theme/AppTheme";
 
 interface Props {
-    text: String,
+    text: string,
     onPress: () => void
 }
 
-export const RoundedButton = ({ text, onPress }: Props) => {
+export const ImageButton = ({ text, onPress }: Props) => {
+
+    const images = {
+        back: require('../../../assets/back.png'),
+    };
     return (
         <TouchableOpacity
             activeOpacity={0.7}
-            style={styles.roundedButton}
-            onPress={() => {
-                Keyboard.dismiss()
-                onPress()
-            }}
+            // style={styles.roundedButton}
+            onPress={() => onPress()}
         >
-            <Text style={styles.textButton}>{text}</Text>
+            <Image source={images[text]} style={styles.logo} />
         </TouchableOpacity>
     )
 }
@@ -35,5 +36,9 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontWeight: 'bold',
         textTransform: 'uppercase'
-    }
+    },
+    logo: {
+        width: 60,
+        height: 60,
+    },
 });
