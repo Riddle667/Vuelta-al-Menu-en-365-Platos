@@ -1,16 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { View, Text, Image, TouchableOpacity, ScrollView, TextInput } from 'react-native'
 import { StackScreenProps } from '@react-navigation/stack'
 import { RootStackParamsList } from '../../navigator/MainAppStack'
 import Loginstyles from './Styles'
 import { RoundedButton } from '../../components/RoundedButton'
 import LoginViewModel from './ViewModel'
+import { AuthContext } from '../../context/auth/AuthContext'
 
 interface Props extends StackScreenProps<RootStackParamsList, 'LoginScreen'> {}
 
 export const LoginScreen = ({navigation, route}: Props) => {
 
   const { email, password, onChange, setValues, login} = LoginViewModel();
+
+  const {status, user} = useContext(AuthContext);
 
   return (
     <View style={Loginstyles.container}>
