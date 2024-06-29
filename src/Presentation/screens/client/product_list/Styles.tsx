@@ -1,0 +1,56 @@
+import { StyleSheet } from 'react-native';
+
+export const styles = StyleSheet.create({
+  product: {
+    width: 100,
+    height: 100,
+    backgroundColor: '#D1D1D1',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 50,
+    borderRadius: 5,
+  },
+    productContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10,
+    backgroundColor: 'white',
+    elevation: 5,  
+    padding: 10,
+    borderRadius: 10,
+  },
+  productSection: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  cartSection: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+  },
+  cartContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 40,
+    height: 40,
+    backgroundColor: "#0091F1",
+    borderRadius: 50,
+    marginRight: 10,
+    marginTop: 10,
+  },
+  productCounterText: {
+    position: 'absolute',
+    transform: [{ translateX: -36 }, { translateY: 20 }],
+    backgroundColor: '#F14100',
+    width: 20,
+    height: 20,
+    textAlign: 'center',
+    borderRadius: 50,
+    color: "white",
+  },
+});
