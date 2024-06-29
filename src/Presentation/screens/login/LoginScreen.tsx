@@ -70,7 +70,7 @@ export const LoginScreen = ({navigation, route}: Props) => {
 
             </View>
             <View style= {{ marginTop: 30 }}>
-              <RoundedButton text='Iniciar Sesión' onPress={ () => login() } />
+              <RoundedButton text='Iniciar Sesión' onPress={ () => login(navigation) } />
                 <View style= { Loginstyles.formRegisterText }>
                 <Text>¿No estás registrado?</Text>
                 <TouchableOpacity onPress={ () => navigation.navigate('RegisterScreen') }>

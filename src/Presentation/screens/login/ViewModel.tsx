@@ -40,7 +40,7 @@ const LoginViewModel = () => {
         });
     }
 
-    const login = async () => {
+    const login = async (navigation) => {
         console.log(values)
         const isValid = await isValidForm();
         console.log(isValid);
@@ -48,6 +48,21 @@ const LoginViewModel = () => {
             try {
                 const response = await LoginAuthUseCase(values.email, values.password);
                 console.log(response);
+                console.log(response.data.role_id);
+                switch (response.data.role_id) {
+                    case 1:
+                        console.log("Administrador")
+                        navigation.navigate("AdminHomeScreen");
+                        break;
+                    case 2:
+                        console.log("Delibery")
+                        break;
+                    case 3:
+                        console.log("Cliente")
+                        break;
+                    default:
+                        break;
+                }
                 if (response.success) {
                     auth(response.data);
                     // await SaveUserUseCase(response.data);
