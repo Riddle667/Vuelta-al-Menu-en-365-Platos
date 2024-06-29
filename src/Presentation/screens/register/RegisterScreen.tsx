@@ -6,20 +6,7 @@ import { RoundedButton } from '../../components/RoundedButton';
 
 export const RegisterScreen = ({navigation}) => {
 
-  const { name, lastName, email, password, phone, onChange, register } = RegisterViewModel();
-  let password2 = '';
-  let password1 = '';
-
-  const validate = () => {
-    if (name === '' || lastName === '' || email === '' || password1 === '' || password2 === '' || phone === '') {
-      alert('Todos los campos son obligatorios');
-    } else if (password1 !== password2) {
-      alert('Las contraseñas no coinciden');
-    } else {
-      onChange('password', password1);
-      register();
-    }
-  }
+  const { name, lastname, email, errorsMessages, password, phone, onChange, register } = RegisterViewModel();
 
   return(
     <View style={styles.container}>
@@ -52,11 +39,11 @@ export const RegisterScreen = ({navigation}) => {
               style={styles.input}
               placeholder={'Nombre'}
               keyboardType='default'
-              value={name}
               onChangeText={text => onChange('name', text)}
               secureTextEntry={false}
             />
           </View>
+          {errorsMessages.name && <Text style={styles.errorMessage}>{errorsMessages.name}</Text>}
           <View style={styles.inputContainer}>
             <Image
               style={styles.inputImage}
@@ -66,11 +53,11 @@ export const RegisterScreen = ({navigation}) => {
               style={styles.input}
               placeholder={'Apellido'}
               keyboardType='default'
-              value={lastName}
-              onChangeText={text => onChange('lastName', text)}
+              onChangeText={text => onChange('lastname', text)}
               secureTextEntry={false}
             />
           </View>
+          {errorsMessages.lastname && <Text style={styles.errorMessage}>{errorsMessages.lastname}</Text>}
           <View style={styles.inputContainer}>
             <Image
               style={styles.inputImage}
@@ -80,11 +67,11 @@ export const RegisterScreen = ({navigation}) => {
               style={styles.input}
               placeholder={'Teléfono'}
               keyboardType='default'
-              value={phone}
               onChangeText={text => onChange('phone', text)}
               secureTextEntry={false}
             />
           </View>
+          {errorsMessages.phone && <Text style={styles.errorMessage}>{errorsMessages.phone}</Text>}
           <View style={styles.inputContainer}>
             <Image
               style={styles.inputImage}
@@ -94,11 +81,11 @@ export const RegisterScreen = ({navigation}) => {
               style={styles.input}
               placeholder={'Correo'}
               keyboardType='default'
-              value={email}
               onChangeText={text => onChange('email', text)}
               secureTextEntry={false}
             />
           </View>
+          {errorsMessages.email && <Text style={styles.errorMessage}>{errorsMessages.email}</Text>}
           <View style={styles.inputContainer}>
             <Image
               style={styles.inputImage}
@@ -108,11 +95,11 @@ export const RegisterScreen = ({navigation}) => {
               style={styles.input}
               placeholder={'Contraseña'}
               keyboardType='default'
-              value={password1}
-              onChangeText={text => password1 = text}
+              onChangeText={text => onChange("password", text)}
               secureTextEntry={false}
             />
           </View>
+          {errorsMessages.password && <Text style={styles.errorMessage}>{errorsMessages.password}</Text>}
           <View style={styles.inputContainer}>
             <Image
               style={styles.inputImage}
@@ -122,16 +109,14 @@ export const RegisterScreen = ({navigation}) => {
               style={styles.input}
               placeholder={'Confirmar contraseña'}
               keyboardType='default'
-              value={password2}
-              onChangeText={text => password2 = text}
+              onChangeText={text => onChange("confirmPassword", text)}
               secureTextEntry={false}
             />
-          </View>
-          <RoundedButton text='Registrar' onPress={ () => validate() } />
+            </View>
+            {errorsMessages.confirmPassword && <Text style={styles.errorMessage}>{errorsMessages.confirmPassword}</Text>}
+            <RoundedButton text='Registrar' onPress={() => register(navigation)} />
+
         </View>
-
-        
-
       </View>
       </ScrollView>
     </View>

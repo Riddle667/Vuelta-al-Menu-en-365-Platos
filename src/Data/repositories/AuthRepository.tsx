@@ -9,14 +9,14 @@ import { User } from "../../Domain/entities/User";
 export class AuthRepositoryImpl implements AuthRepository {
     async login(email: string, password: string): Promise<ResponseAPIDelivery> {
         try {
-
+            console.log("desde la llamada")
             console.log('Email: ',email);
             const { data } = await ApiDelivery.post<ResponseAPIDelivery>('/auth/login', { email, password });
             console.log('Data: ',data);
             return Promise.resolve(data);
         } catch (error) {
             let e = (error as AxiosError & ResponseAPIDelivery);
-            console.log('Error: ',JSON.stringify(e.response?.data));
+            console.log('Error desde data: ',JSON.stringify(e.response?.data));
             return Promise.reject(e.response?.data);
         }
     }

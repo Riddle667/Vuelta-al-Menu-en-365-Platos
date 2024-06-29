@@ -91,7 +91,6 @@ const CreateCategoryModel = () => {
           type: "danger",
           icon: "danger"
         })
-        
       }
     }
   }
