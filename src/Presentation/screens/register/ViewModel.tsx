@@ -94,10 +94,11 @@ const RegisterViewModel = () => {
             setLoading(true);
             try {
                 // Destructure values to user
-                const { image, confirmPassword, ...data } = values;
-
+                const { image, ...data } = values;
+                const user = { ...data, confirmPassword: values.confirmPassword };
+                
                 // Call use case to register user
-                const response = await RegisterAuthUseCase(data);
+                const response = await RegisterAuthUseCase(user);
 
                 if (response.success) {
                     const responseImage = await UpdateFileUseCase(file!, 'users', response.data.id);
@@ -171,4 +172,4 @@ const RegisterViewModel = () => {
     }
 }
 
-export default RegisterViewModel
+export default RegisterViewModel;
