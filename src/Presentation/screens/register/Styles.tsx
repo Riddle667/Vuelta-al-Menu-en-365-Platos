@@ -82,4 +82,20 @@ export const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 20,
   },
+  errorMessage: {
+    color: '#FF4141',
+    fontSize: 12,
+    textAlign: 'center',
+    width: '70%',
+    transform: [{ translateX: 0 }, {translateY: -20}],
+    zIndex: 10,
+    height: 15,
+    margin: 0,
+    padding: 0,
+  },
+  errorContainer: {
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'row',
+  }
 });
