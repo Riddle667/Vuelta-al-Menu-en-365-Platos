@@ -1,85 +1,103 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-  image: {
-    width: '100%',
-    height: '40%',
-  },
-  logoContainer: {
-    alignSelf: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    top: 50, // Ajustar según sea necesario
-  },
-  logo: {
-    width: 150,
-    height: 150,
-  },
-  logoText: {
-    paddingTop: 10,
-    color: '#FFF',
-    fontSize: 16,
-    fontFamily: 'Roboto',
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-    textAlign: 'center',
-  },
-  form: {
-    flexGrow: 1,
-    backgroundColor: 'white',
-    padding: 20,
-    borderRadius: 20,
-    marginTop: -15, // Ajustar para mover el formulario más hacia arriba o abajo
-  },
-  RegisterText: {
-    fontSize: 30,
-    fontWeight: '500',
-    textAlign: 'center',
-    marginBottom: 20,
-  },
-  inputSection: {
-    width: '100%',
-    marginTop: 10,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  inputImage: {
-    backgroundColor: '#FF4141',
-    width: 30,
-    height: 30,
-    borderRadius: 15,
-    marginRight: 10,
-  },
-  input: {
-    flex: 1,
-    height: 40,
-    backgroundColor: '#FFFFFF',
-    borderColor: '#FF4141',
-    borderWidth: 1,
-    borderRadius: 20,
-    color: '#FF4141',
-    fontWeight: '900',
-    paddingLeft: 50, // Ajustar padding para evitar superposición con icono
-    paddingVertical: 5,
-  },
-  registerButton: {
-    backgroundColor: '#FF4141',
-    borderRadius: 50,
-    paddingVertical: 10,
-    alignItems: 'center',
-  },
-  registerButtonText: {
-    color: '#FFFFFF',
-    fontSize: 20,
-  },
+const RegisterStyles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#000',
+    },
+    imageBackground: {
+        bottom: 30,
+        width: '100%',
+        height: '70%',
+        opacity: 0.4,
+    },
+    form: {
+        backgroundColor: '#FFF',
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
+        height: '80%',
+        padding: 30,
+        position: 'absolute',
+        bottom: 0,
+        width: '100%',
+    },
+    formText: {
+        fontWeight: 'bold',
+        fontSize: 16,
+    },
+    formInput: {
+        flexDirection: 'row',
+        marginTop: 30
+    },
+    formTextInput: {
+        flex: 1,
+        borderBottomWidth: 1,
+        borderBottomColor: '#EBEBEB',
+        marginLeft: 15
+    },
+    formRegister: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginTop: 30
+    },
+    formRegisterText: {
+        borderBottomColor: 'orange',
+        borderBottomWidth: 1,
+        color: 'orange',
+        fontStyle: 'italic',
+        fontWeight: 'bold',
+        marginLeft: 10
+    },
+    formIcon: {
+        width: 30,
+        height: 30,
+        marginTop: 10
+    },
+    logoContainer: {
+        alignSelf: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        top: '5%'
+    },
+    logo: {
+        width: 80,
+        height: 80,
+    },
+    logoText: {
+        color: '#FFF',
+        fontSize: 16,
+        fontWeight: 'bold',
+        textTransform: 'uppercase',
+        textAlign: 'center'
+    },
+    logoBack: {
+        width: 80,
+        height: 80,
+    },
+    loading: {
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        right: 0,
+        left: 0,
+    },
+    errorText: {
+        backgroundColor: '#ff7f7f',
+        borderLeftWidth: 3,
+        borderColor: '#993235',
+        color: 'white',
+        fontSize: 14,
+        fontWeight: '600',
+        marginVertical: 12,
+        paddingVertical: 8,
+        paddingHorizontal: 12,
+    },
+    errorsContainer: {
+        backgroundColor: '#ff7f7f',
+        borderRadius: 10,
+        marginTop: 10,
+        padding: 10,
+    }
 });
+
+export default RegisterStyles;
