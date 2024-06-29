@@ -38,6 +38,7 @@ const Loginstyles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 50,
         marginLeft: 15,
+        color: '#FFF',
         fontWeight: 'bold'
     },
     formLogin: {
