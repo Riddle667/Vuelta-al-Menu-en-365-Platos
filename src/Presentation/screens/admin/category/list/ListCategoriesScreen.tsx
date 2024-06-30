@@ -12,16 +12,16 @@ export const ListCategoriesScreen = ({ navigation }) => {
     handleModalEdit,
     editCategory,
     onChange,
+    selectImage,
     modalEditVisible,
     modalRemoveVisible,
     categories,
     category,
+    image
   } = useViewModel();
   
   console.log(categories[0])
-
-  const imagen = "data:image/png;base64,/9j/4QIBRXhpZgAATU0AKgAAAAgABwEAAAQAAAABAAAEgAEQAAIAAAAUAAAAYgEBAAQAAAABAAAGAAEPAAIAAAAHAAAAdodpAAQAAAABAAAAkQESAAQAAAABAAAAAAEyAAIAAAAUAAAAfQAAAABzZGtfZ3Bob25lNjRfeDg2XzY0AEdvb2dsZQAyMDI0OjA1OjE2IDExOjI3OjE1AAAPkAAAAgAAAAUAAAFLkgIAB"
-
+  console.log("imagen", image)
   useEffect(() => {
     getCategories();
   }, []);
@@ -137,6 +137,18 @@ export const ListCategoriesScreen = ({ navigation }) => {
                 >
                 {category.description}
                 </TextInput>
+              </View>
+              <View>
+                <TouchableOpacity 
+                  style={styles.imageButton}
+                  onPress={selectImage}  
+                >
+                  <Text style={styles.imageButtonText}>Seleccionar Imagen</Text>
+                </TouchableOpacity>
+                <Image
+                  style={styles.editImage}
+                  source={{uri: (image == "") ? 'https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg' : image}}
+                />
               </View>
             </View>
             <View style={styles.modalButtons}>

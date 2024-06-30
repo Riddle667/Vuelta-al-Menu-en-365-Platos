@@ -139,5 +139,30 @@ export const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  imageButton: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignContent: 'center',
+    backgroundColor: '#FF4141',
+    borderRadius: 5,
+    width: 200,
+    marginTop: 20,
+    transform: [{ translateX: 70 }],
+    marginBottom: 20,
+  },
+  imageButtonText: {
+    textAlign: 'center',
+    color: '#FFFFFF',
+    padding: 5,
+    fontSize: 16,
+  },
+  editImage: {
+    width: 100,
+    height: 100,
+    backgroundColor: 'red',
+    marginBottom: 20,
+    left: "50%",
+    transform: [{ translateX: -50 }],
   }
 });
