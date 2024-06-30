@@ -7,6 +7,7 @@ import { CreateCategoryScreen } from '../screens/admin/category/create/CreateCat
 import { ListCategoriesScreen } from '../screens/admin/category/list/ListCategoriesScreen'
 import { ChangePasswordScreen } from '../screens/common/change_password/ChangePasswordScreen'
 import { CreateProductScreen } from '../screens/admin/product/create/CreateProductScreen'
+import { ListProductsScreen } from '../screens/admin/product/list/ListCategoriesScreen'
 
 export type RootStackParamsList = {
   LoginScreen: undefined,
@@ -17,7 +18,8 @@ export type RootStackParamsList = {
   ListCategoriesScreen: undefined
   ClientBottomTabs: undefined,
   ChangePasswordScreen: undefined,
-  CreateProductScreen: undefined
+  CreateProductScreen: undefined,
+  ListProductsScreen: undefined
 }
 
 const Stack = createStackNavigator<RootStackParamsList>();
@@ -37,6 +39,7 @@ export const MainAppStack = () => {
       <Stack.Screen name="ListCategoriesScreen" component={ListCategoriesScreen} />
       <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen} />
       <Stack.Screen name="CreateProductScreen" component={CreateProductScreen} />
+      <Stack.Screen name="ListProductsScreen" component={ListProductsScreen} />
     </Stack.Navigator>
   );
 }

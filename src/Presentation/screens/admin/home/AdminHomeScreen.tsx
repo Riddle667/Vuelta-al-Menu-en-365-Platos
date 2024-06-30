@@ -23,6 +23,19 @@ export const AdminHomeScreen = ({navigation}) => {
         <View style={styles.buttonContainer}>
           <TouchableOpacity 
             style={styles.adminButton}
+            onPress={() => navigation.navigate('ListProductsScreen')}  
+          >
+            <Image 
+              style={styles.icon}
+              source={require('../../../../../assets/product-icon.png')}
+            />
+            <Text style={styles.adminButtonText}>Listar Productos</Text>
+          </TouchableOpacity>
+        </View>
+        
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity 
+            style={styles.adminButton}
             onPress={() => navigation.navigate('CreateCategoryScreen')}  
           >
             <Image 
