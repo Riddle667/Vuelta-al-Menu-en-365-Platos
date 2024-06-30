@@ -5,7 +5,7 @@ import useViewModel from './ViewModel';
 
 export const ListCategoriesScreen = ({ navigation }) => {
   
-  const { getCategories, categories } = useViewModel();
+  const { getCategories, removeCategory, categories } = useViewModel();
 
   
   console.log(categories[0])
@@ -25,7 +25,10 @@ export const ListCategoriesScreen = ({ navigation }) => {
           return (
             <View style={styles.categoryContainer} key={index}>
               <View style={ styles.leftSection}>
-                <View style={ styles.categoryContainerImage}>
+                <View
+                  style={styles.categoryContainerImage}
+                  onP
+                >
                   <Image
                     style={styles.image}
                     source={{ uri: "https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg" }}
@@ -37,14 +40,20 @@ export const ListCategoriesScreen = ({ navigation }) => {
                 </View>
               </View>
               <View style={styles.categoryOptionsContainer}>
-                <Image
-                  style={ styles.icon}
-                  source={require('../../../../../../assets/basurero.png')}
-                />
-                <Image
-                  style={ styles.icon}
-                  source={require('../../../../../../assets/boligrafo.png')}
-                />
+                <TouchableOpacity
+                  onPress={() => removeCategory(category.id)}
+                >
+                  <Image
+                    style={ styles.icon}
+                    source={require('../../../../../../assets/basurero.png')}
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                  <Image
+                    style={ styles.icon}
+                    source={require('../../../../../../assets/boligrafo.png')}
+                    />
+                </TouchableOpacity> 
               </View>
             </View>
           )

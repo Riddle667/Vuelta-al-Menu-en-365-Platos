@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
+    marginBottom: 50,
   },
   categoryContainer: {
     width: '100%',
