@@ -96,7 +96,7 @@ export const RegisterScreen = ({navigation}) => {
               placeholder={'Contraseña'}
               keyboardType='default'
               onChangeText={text => onChange("password", text)}
-              secureTextEntry={false}
+              secureTextEntry={true}
             />
           </View>
           {errorsMessages.password && <Text style={styles.errorMessage}>{errorsMessages.password}</Text>}
@@ -110,7 +110,7 @@ export const RegisterScreen = ({navigation}) => {
               placeholder={'Confirmar contraseña'}
               keyboardType='default'
               onChangeText={text => onChange("confirmPassword", text)}
-              secureTextEntry={false}
+              secureTextEntry={true}
             />
             </View>
             {errorsMessages.confirmPassword && <Text style={styles.errorMessage}>{errorsMessages.confirmPassword}</Text>}
