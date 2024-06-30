@@ -62,5 +62,38 @@ export const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     width: '80%',
+  },
+  modal: {
+    position: "absolute",
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+
+  },
+  modalContainer: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    width: '80%',
+  },
+  modalButtons: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    flexDirection: 'row',
+    marginTop: 20,
+  },
+  modalAcceptButton: {
+    padding: 10,
+    borderRadius: 10,
+    backgroundColor: '#DE786B',
+  },
+  modalBackButton: {
+    padding: 10,
+    borderRadius: 10,
+    borderColor: '#DE786B',
+    borderWidth: 1,
   }
 });

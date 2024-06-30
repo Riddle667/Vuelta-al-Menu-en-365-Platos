@@ -19,10 +19,15 @@ const ListCategoriesScreen = () => {
 
   const [categories, setCategories] = useState([]);
   
-  const removeCategory = async (id: number) => {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const [idToRemove, setIdToRemove] = useState(0);
+
+  const removeCategory = async () => {
     console.log("removiendo")
+    console.log(idToRemove)
     try {
-      const response = await RemoveCategoryUseCase(id);
+      const response = await RemoveCategoryUseCase(idToRemove);
       console.log(response);
       showMessage({
         message: "Categoria eliminada con exito",
@@ -47,10 +52,20 @@ const ListCategoriesScreen = () => {
     }
   }
 
+  const openModal = (open: boolean, id?: number) => {
+    setModalVisible(open);
+    setIdToRemove(id);
+  }
+
+
   return {
     getCategories,
     removeCategory,
-    categories
+    setModalVisible,
+    openModal,
+    categories,
+    modalVisible,
+    idToRemove
   };
 };
 
