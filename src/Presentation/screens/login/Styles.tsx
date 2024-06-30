@@ -26,7 +26,8 @@ const Loginstyles = StyleSheet.create({
     },
     formInput: {
         flexDirection: 'row',
-        marginTop: 30
+        marginTop: 30,
+        display: 'flex',
     },
     formTextInput: {
         fontStyle: 'italic',
@@ -56,7 +57,6 @@ const Loginstyles = StyleSheet.create({
     formIcon: {
         width: 30,
         height: 30,
-        marginTop: 10
     },
     logoContainer: {
         alignSelf: 'center',
@@ -94,6 +94,17 @@ const Loginstyles = StyleSheet.create({
         borderRadius: 10,
         marginTop: 10,
         padding: 10,
+    },
+    loginErrorMessage: {
+        color: 'red',
+        fontSize: 16,
+        textAlign: 'center',
+        marginTop: 20
+    },
+    errorMessage: {
+        color: 'red',
+        fontSize: 16,
+        paddingLeft: 50
     }
 });
 

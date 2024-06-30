@@ -11,7 +11,7 @@ interface Props extends StackScreenProps<RootStackParamsList, 'LoginScreen'> {}
 
 export const LoginScreen = ({navigation, route}: Props) => {
 
-  const { email, password, onChange, setValues, login} = LoginViewModel();
+  const { loginError, email, password, errorMessages, onChange, setValues, login} = LoginViewModel();
 
   const {status, user} = useContext(AuthContext);
 
@@ -22,38 +22,35 @@ export const LoginScreen = ({navigation, route}: Props) => {
             style= {Loginstyles.imageBackground}
         />
         <View style={ Loginstyles.logoContainer }>
-            <Image
-                source={ require('../../../../assets/logo.png') }
-                style={ Loginstyles.logo }
-            /> 
+          <Image
+              source={ require('../../../../assets/logo.png') }
+              style={ Loginstyles.logo }
+          /> 
             
-            <Text style={ Loginstyles.logoText }>Vuelta al menu en 365 platos</Text>
-            
+          <Text style={ Loginstyles.logoText }>Vuelta al menu en 365 platos</Text>
         </View>
-
         <View style={ Loginstyles.form }>
           <ScrollView
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
           >
-
-            <Text style={ Loginstyles.formText }>Iniciar Sesión</Text>
+          <Text style={Loginstyles.formText}>Iniciar Sesión</Text>
+          { loginError && <Text style={ Loginstyles.loginErrorMessage }>{loginError}</Text> }
             <View style={ Loginstyles.formInput }>
               <Image
                 source={ require('../../../../assets/email.png') }
                 style={ Loginstyles.formIcon }
               />
-
-            <TextInput
-              style={Loginstyles.formTextInput}
-              placeholder={'Ingrese su email'}
-              keyboardType='default'
-              value={email}
-              onChangeText={text => onChange('email', text)}
-              secureTextEntry={false}
-            />
-            </View>
-
+              <TextInput
+                style={Loginstyles.formTextInput}
+                placeholder={'Ingrese su email'}
+                keyboardType='default'
+                value={email}
+                onChangeText={text => onChange('email', text)}
+                secureTextEntry={false}
+              />
+          </View>
+            { errorMessages.email && <Text style={ Loginstyles.errorMessage }>{errorMessages.email}</Text> }
             <View style={ Loginstyles.formInput }>
               <Image
                 source={ require('../../../../assets/password-icon.png') }
@@ -67,8 +64,9 @@ export const LoginScreen = ({navigation, route}: Props) => {
                 onChangeText={text => onChange('password', text)}
                 secureTextEntry={true}
               />
-
             </View>
+            { errorMessages.password && <Text style={ Loginstyles.errorMessage }>{errorMessages.password}</Text> }
+          
             <View style= {{ marginTop: 30 }}>
               <RoundedButton text='Iniciar Sesión' onPress={ () => login(navigation) } />
                 <View style= { Loginstyles.formRegisterText }>

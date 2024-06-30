@@ -14,6 +14,7 @@ interface ResponseErrorData {
     value: string
 }
 
+
 const validationLoginSchema = yup.object().shape({
     email: yup.string().email('Ingrese un correo electronico válido').required('El correo es requerido'),
     password: yup.string().required('La contraseña es requerida')
@@ -30,9 +31,8 @@ const LoginViewModel = () => {
     });
 
     
-
+    const [loginError, setLoginError] = useState<string>('');
     const [errorMessages, setErrorMessages] = useState<Record<string, string>>({});
-
     const [errorResponse, setErrorResponse] = useState<ResponseErrorData[]>([]);
 
     const onChange = (field: string, value: string) => {
@@ -41,6 +41,7 @@ const LoginViewModel = () => {
     }
 
     const login = async (navigation) => {
+        setLoginError("");
         console.log(values)
         const isValid = await isValidForm();
         console.log(isValid);
@@ -70,6 +71,7 @@ const LoginViewModel = () => {
                 }  
             } catch (error) {
                 console.log('Error: ', error);
+                setLoginError('Usuario o contraseña incorrectos');
             }
         } else {
             console.log('Formulario inválido');
@@ -93,11 +95,12 @@ const LoginViewModel = () => {
 
     return {
         ...values,
+        errorMessages,
         onChange,
         setValues,
         login,
+        loginError
     }
-
 
 }
 
