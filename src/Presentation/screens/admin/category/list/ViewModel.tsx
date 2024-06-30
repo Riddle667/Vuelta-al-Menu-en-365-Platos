@@ -2,30 +2,35 @@ import { useState } from "react";
 import { showMessage } from "react-native-flash-message";
 import { ListCategory } from "../../../../../Domain/useCases/user/ListCategoyUseCase";
 import { RemoveCategoryUseCase } from "../../../../../Domain/useCases/user/RemoveCategoryUseCase";
+import { EditCategoryUseCase } from "../../../../../Domain/useCases/user/EditCategoryUseCase";
+import { Category } from "../../../../../Domain/entities/Category";
 
 interface Values {
+  id: number;
   name: string;
   description: string;
-  image: string;
 }
-
-interface ResponseErrorData {
-  path: string;
-  value: string;
-}
-
 
 const ListCategoriesScreen = () => {
 
   const [categories, setCategories] = useState([]);
-  
-  const [modalVisible, setModalVisible] = useState(false);
-
   const [idToRemove, setIdToRemove] = useState(0);
+  const [modalEditVisible, setModalEditVisible] = useState(false);
+  const [modalRemoveVisible, setModalRemoveVisible] = useState(false);
+  const [category, setCategory] = useState<Category>({
+    id: -1,
+    name: "",
+    description: "",
+  });
+
+  const onChange = (name: string, value: string) => {
+    setCategory({
+      ...category,
+      [name]: value
+    });
+  }
 
   const removeCategory = async () => {
-    console.log("removiendo")
-    console.log(idToRemove)
     try {
       const response = await RemoveCategoryUseCase(idToRemove);
       console.log(response);
@@ -33,6 +38,24 @@ const ListCategoriesScreen = () => {
         message: "Categoria eliminada con exito",
         type: "success",
       });
+      setModalRemoveVisible(false);
+      getCategories();
+    } catch (error) {
+      console.log("Error: ", error
+      );
+    }
+  }
+
+  const editCategory = async () => {
+    try {
+      const response = await EditCategoryUseCase(category);
+      console.log(response);
+      showMessage({
+        message: "Categoria eliminada con exito",
+        type: "success",
+      });
+      setModalEditVisible(false);
+      setCategory({} as Category)
       getCategories();
     } catch (error) {
       console.log("Error: ", error
@@ -52,20 +75,30 @@ const ListCategoriesScreen = () => {
     }
   }
 
-  const openModal = (open: boolean, id?: number) => {
-    setModalVisible(open);
+  const handleModalRemove = (open: boolean, id?: number) => {
+    setModalRemoveVisible(open);
     setIdToRemove(id);
+  }
+
+    const handleModalEdit = (open: boolean, category?: Category) => {
+    setModalEditVisible(open);
+    setCategory(category);
   }
 
 
   return {
     getCategories,
     removeCategory,
-    setModalVisible,
-    openModal,
+    setModalRemoveVisible,
+    handleModalRemove,
+    handleModalEdit,
+    editCategory,
+    onChange,
     categories,
-    modalVisible,
-    idToRemove
+    modalRemoveVisible,
+    idToRemove,
+    modalEditVisible,
+    category,
   };
 };
 

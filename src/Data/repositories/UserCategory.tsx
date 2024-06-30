@@ -65,4 +65,29 @@ export class UserCategoryRepositoryImpl implements UserCategoryRepository {
             return Promise.reject(error)
         }
     }
+
+    async edit(category: Category): Promise<ResponseAPIDelivery> {
+
+        const { getItem } = LocalStorage();
+
+        try {
+
+            const categotyData = {
+                name: category.name,
+                description: category.description,
+            };
+
+            const path = "category/update-category/" + category.id;
+            console.log("ruta: " + HOST_EMULATOR + path);
+            console.log("Esperando respuesta de: " + HOST_EMULATOR + path);
+            ApiDelivery.defaults.headers.common['Authorization'] = "Bearer " + await getItem("token");
+            const { data } = await ApiDelivery.put<ResponseAPIDelivery>(path, categotyData);
+            console.log("Respuesta recibida del servidor...");
+            return Promise.resolve(data);
+        } catch (error) {
+            console.log("Error: ");
+            console.log(error);
+            return Promise.reject(error)
+        }
+    }
 }

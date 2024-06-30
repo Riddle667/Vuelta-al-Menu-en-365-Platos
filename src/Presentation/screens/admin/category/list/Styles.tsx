@@ -77,7 +77,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
     padding: 20,
     borderRadius: 10,
-    width: '80%',
+    width: '90%',
   },
   modalButtons: {
     display: 'flex',
@@ -95,5 +95,38 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: '#ff432a',
     borderWidth: 1,
+  },
+  inputTextArea: {
+    fontStyle: 'italic',
+    paddingLeft: 10,
+    borderBottomWidth: 1,
+    backgroundColor: '#FFFFFF',
+    borderColor: '#FF4141',
+    borderWidth: 1,
+    borderRadius: 50,
+    fontWeight: 'bold',
+    height: 40,
+    width: '100%',
+  },
+  textInputContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    marginTop: 20,
+  },
+  InputText: {
+    marginLeft: 10,
+    marginBottom: 5,
+  },
+  noData: {
+    width: '100%',
+    height: '100%',
+    textAlign: 'center',
+    marginTop: 200,
+    fontSize: 20,
+    color: "#B1B1B1",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 });
