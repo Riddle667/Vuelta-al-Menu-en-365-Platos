@@ -3,6 +3,7 @@ import * as yup from 'yup';
 import { LoginAuthUseCase } from "../../../Domain/useCases/Auth/LoginAuth";
 import { SaveUserUseCase } from "../../../Domain/useCases/UserLocal/SaveUserUseCase";
 import { AuthContext } from "../../context/auth/AuthContext";
+import { GetUserUseCase } from "../../../Domain/useCases/UserLocal/GetUserLocal";
 
 interface Values{
     email: string,
@@ -29,7 +30,7 @@ const LoginViewModel = () => {
         password: '',
     });
 
-    
+      
 
     const [errorMessages, setErrorMessages] = useState<Record<string, string>>({});
 
@@ -49,9 +50,9 @@ const LoginViewModel = () => {
                 const response = await LoginAuthUseCase(values.email, values.password);
                 console.log(response);
                 if (response.success) {
+                    
+                    await SaveUserUseCase(response.data);
                     auth(response.data);
-                    // await SaveUserUseCase(response.data);
-                    // auth
                 }  
             } catch (error) {
                 console.log('Error: ', error);

@@ -15,6 +15,7 @@ export const LoginScreen = ({navigation, route}: Props) => {
 
   const {status, user} = useContext(AuthContext);
 
+  console.log( status,user);
   return (
     <View style={Loginstyles.container}>
         <Image
@@ -37,12 +38,12 @@ export const LoginScreen = ({navigation, route}: Props) => {
             showsHorizontalScrollIndicator={false}
           >
 
-            <Text style={ Loginstyles.formText }>Iniciar Sesión</Text>
-            <View style={ Loginstyles.formInput }>
-              <Image
-                source={ require('../../../../assets/email.png') }
-                style={ Loginstyles.formIcon }
-              />
+          <Text style={ Loginstyles.formText }>Iniciar Sesión</Text>
+          <View style={ Loginstyles.formInput }>
+            <Image
+              source={ require('../../../../assets/email.png') }
+              style={ Loginstyles.formIcon }
+            />
 
             <TextInput
               style={Loginstyles.formTextInput}
@@ -52,35 +53,35 @@ export const LoginScreen = ({navigation, route}: Props) => {
               onChangeText={text => onChange('email', text)}
               secureTextEntry={false}
             />
-            </View>
-
-            <View style={ Loginstyles.formInput }>
-              <Image
-                source={ require('../../../../assets/password-icon.png') }
-                style={ Loginstyles.formIcon }
-              />
-              <TextInput
-                style={Loginstyles.formTextInput}
-                placeholder={'******'}
-                keyboardType='default'
-                value={password}
-                onChangeText={text => onChange('password', text)}
-                secureTextEntry={true}
-              />
-
-            </View>
-            <View style= {{ marginTop: 30 }}>
-              <RoundedButton text='Iniciar Sesión' onPress={ () => login() } />
-                <View style= { Loginstyles.formRegisterText }>
-                <Text>¿No estás registrado?</Text>
-                <TouchableOpacity onPress={ () => navigation.navigate('RegisterScreen') }>
-                <Text style= { Loginstyles.formRegisterText }>Hazlo ahora</Text>
-            </TouchableOpacity>
-            
           </View>
-        </View>
-          </ ScrollView>
-        </View>
+
+          <View style={ Loginstyles.formInput }>
+            <Image
+              source={ require('../../../../assets/password-icon.png') }
+              style={ Loginstyles.formIcon }
+            />
+            <TextInput
+              style={Loginstyles.formTextInput}
+              placeholder={'******'}
+              keyboardType='default'
+              value={password}
+              onChangeText={text => onChange('password', text)}
+              secureTextEntry={true}
+            />
+
+          </View>
+          <View style= {{ marginTop: 30 }}>
+            <RoundedButton text='Iniciar Sesión' onPress={ () => login() } />
+            <View style= { Loginstyles.RegisterText}>
+              <Text>¿No estás registrado?</Text>
+              <TouchableOpacity onPress={ () => navigation.navigate('RegisterScreen') }>
+                <Text style= { Loginstyles.formRegisterText }>Hazlo ahora</Text>
+              </TouchableOpacity>
+          
+            </View>
+          </View>
+        </ScrollView>
+      </View>
     </View>
   )
 }

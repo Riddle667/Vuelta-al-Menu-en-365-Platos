@@ -51,7 +51,14 @@ const Loginstyles = StyleSheet.create({
         color: 'orange',
         fontStyle: 'italic',
         fontWeight: 'bold',
-        marginLeft: 10
+        marginLeft: 10,
+        paddingBottom: 2, // Ajusta el espacio entre el texto y la línea inferior
+        fontSize: 16, // Ajusta el tamaño de la fuente
+    },
+    RegisterText: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 10,
     },
     formIcon: {
         width: 30,
