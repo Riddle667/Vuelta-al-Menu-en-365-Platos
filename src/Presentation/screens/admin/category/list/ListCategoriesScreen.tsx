@@ -24,13 +24,27 @@ export const ListCategoriesScreen = ({ navigation }) => {
           console.log(category.image)
           return (
             <View style={styles.categoryContainer} key={index}>
-              <Image
-                style={styles.image}
-                source={{ uri: "https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg" }}
-              />
-              <View>
-                <Text>{category.name}</Text>
-                <Text>{category.description}</Text>
+              <View style={ styles.leftSection}>
+                <View style={ styles.categoryContainerImage}>
+                  <Image
+                    style={styles.image}
+                    source={{ uri: "https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg" }}
+                  />
+                </View>
+                <View style={ styles.categoryContainerText}>
+                    <Text>{category.name}</Text>
+                    <Text>{category.description}</Text>
+                </View>
+              </View>
+              <View style={styles.categoryOptionsContainer}>
+                <Image
+                  style={ styles.icon}
+                  source={require('../../../../../../assets/basurero.png')}
+                />
+                <Image
+                  style={ styles.icon}
+                  source={require('../../../../../../assets/boligrafo.png')}
+                />
               </View>
             </View>
           )

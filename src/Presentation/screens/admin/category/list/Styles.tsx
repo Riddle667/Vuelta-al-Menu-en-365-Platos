@@ -20,19 +20,46 @@ export const styles = StyleSheet.create({
   categoryContainer: {
     width: '100%',
     height: 70,
-    backgroundColor: '#F3F3F3',
+    backgroundColor: '#E1E1E1',
     display: 'flex',
     flexDirection: 'row',
+    marginBottom: 10,
+    padding: 10,
+    borderRadius: 10,
   },
-  // categoryImage: {
-  //   width: 40,
-  //   height: 40,
-  // }
   image: {
     width: 60,
     height: 60,
-    marginRight: 20,
     zIndex: 1,
     backgroundColor: 'red',
+    borderRadius: 8,
+  },
+  categoryContainerText: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginLeft: 10,
+  },
+  categoryOptionsContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '20%',
+    justifyContent: 'space-around',
+  },
+  icon: {
+    width: 25,
+    height: 25,
+    marginBottom: 5,
+  },
+  categoryContainerImage: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  leftSection: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '80%',
   }
 });
