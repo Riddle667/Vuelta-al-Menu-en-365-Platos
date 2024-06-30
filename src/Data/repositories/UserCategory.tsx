@@ -8,11 +8,14 @@ import { LocalStorage } from "../sources/local/LocalStorage";
 
 export class UserCategoryRepositoryImpl implements UserCategoryRepository {
     async create(category: Category): Promise<ResponseAPIDelivery> {
+
+        const { getItem } = LocalStorage();
+
         try {
             const path = "/category/create-category";
             console.log("ruta: " + HOST_EMULATOR + path);
             console.log("Esperando respuesta de: " + HOST_EMULATOR + path);
-            ApiDelivery.defaults.headers.common['Authorization'] = await LocalStorage().getItem("token");
+            ApiDelivery.defaults.headers.common['Authorization'] = "Bearer " + await getItem("token");
             const { data } = await ApiDelivery.post<ResponseAPIDelivery>(path, category);
             console.log("Respuesta recibida del servidor...");
 
