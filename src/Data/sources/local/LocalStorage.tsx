@@ -5,6 +5,7 @@ export const LocalStorage = () => {
 
     const save = async (key: string, value: string) => {
         try {
+            console.log("guardando")
             await AsyncStorage.setItem(key, value);
         } catch (error) {
             console.log("ERROR to local storage ", error);
@@ -13,6 +14,7 @@ export const LocalStorage = () => {
 
     const getItem = (key: string) => {
         try {
+            console.log("Obteniendo")
             const item = AsyncStorage.getItem(key);
             return item;
         } catch (error) {
