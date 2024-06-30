@@ -53,7 +53,7 @@ export class UserCategoryRepositoryImpl implements UserCategoryRepository {
 
     async remove(id: number): Promise<ResponseAPIDelivery> {
         try {
-            const path = "category/delete-category/" + id.toString();
+            const path = "/category/delete-category/" + id.toString();
             console.log("ruta: " + HOST_EMULATOR + path);
             console.log("Esperando respuesta de: " + HOST_EMULATOR + path);
             const { data } = await ApiDelivery.delete<ResponseAPIDelivery>(path);
