@@ -5,7 +5,6 @@ import { ResponseAPIDelivery } from "../sources/remote/api/models/ResponseAPIDel
 import { User } from "../../Domain/entities/User";
 import { LocalStorage } from "../sources/local/LocalStorage";
 
-
 export class AuthRepositoryImpl implements AuthRepository {
     async login(email: string, password: string): Promise<ResponseAPIDelivery> {
 
@@ -17,6 +16,7 @@ export class AuthRepositoryImpl implements AuthRepository {
             const { data } = await ApiDelivery.post<ResponseAPIDelivery>('/auth/login', { email, password });
             console.log('Data: ', data);
             save("token", data.data.session_token);
+            save("email", data.data.email);
             return Promise.resolve(data);
         } catch (error) {
             let e = (error as AxiosError & ResponseAPIDelivery);

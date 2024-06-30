@@ -2,8 +2,8 @@ import React from 'react';
 import { View, Text, ScrollView, TextInput, TouchableOpacity, Image } from 'react-native';
 import { styles } from './Styles';
 import useViewModel from './ViewModel';
-
-export const ChangePasswordScreen = ({navigation}) => {
+  
+export const ChangePasswordScreen = ({ navigation }) => {
 
   const {password, confirmPassword, changePassword, onChange, errorsMessages, errorsResponse } = useViewModel();
 

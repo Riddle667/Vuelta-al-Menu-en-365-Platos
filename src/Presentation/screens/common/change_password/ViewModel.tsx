@@ -5,6 +5,7 @@ import { ResponseAPIDelivery } from "../../../../Data/sources/remote/api/models/
 import { showMessage } from "react-native-flash-message";
 import { ChangePasswordUserUseCase } from "../../../../Domain/useCases/user/ChangePasswordUserUseCase";
 import { AuthContext } from "../../../context/auth/AuthContext";
+import { LocalStorage } from "../../../../Data/sources/local/LocalStorage"; 
 
 interface Values {
   password: string;
@@ -46,7 +47,7 @@ const ChangePasswordModel = () => {
         console.log("realizando consulta...");
         console.log("values.password: " + values.password);
         //Se utiliza un inicio de sesión de prueba, debido a que no se cuenta con un inicio de sesión real aún
-        const response = await ChangePasswordUserUseCase(values.password, "ignaciasdaassdo@gmail.com", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzE3OTAzMTc5LCJleHAiOjE3MTc5MTc1Nzl9.Rt97p5yTh33jw9o48c9VW7BfcXOuhJtBAZ4pSFdWiPk");
+        const response = await ChangePasswordUserUseCase(values.password);
         console.log("response:" + response)
         if(response){
           console.log('Contraseña actualizada');
