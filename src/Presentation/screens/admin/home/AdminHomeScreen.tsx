@@ -32,7 +32,18 @@ export const AdminHomeScreen = ({navigation}) => {
             <Text style={styles.adminButtonText}>Crear Categoría</Text>
           </TouchableOpacity>
         </View>
-
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity 
+            style={styles.adminButton}
+            onPress={() => navigation.navigate('ListCategoriesScreen')}  
+          >
+            <Image 
+              style={styles.icon}
+              source={require('../../../../../assets/category-icon.png')}
+            />
+            <Text style={styles.adminButtonText}>Ver Categorías</Text>
+          </TouchableOpacity>
+        </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity 
             style={styles.adminButton}
