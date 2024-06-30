@@ -88,12 +88,12 @@ export const styles = StyleSheet.create({
   modalAcceptButton: {
     padding: 10,
     borderRadius: 10,
-    backgroundColor: '#DE786B',
+    backgroundColor: '#ff432a',
   },
   modalBackButton: {
     padding: 10,
     borderRadius: 10,
-    borderColor: '#DE786B',
+    borderColor: '#ff432a',
     borderWidth: 1,
   }
 });
