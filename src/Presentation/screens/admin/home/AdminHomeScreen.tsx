@@ -10,7 +10,7 @@ export const AdminHomeScreen = ({navigation}) => {
         <View style={styles.buttonContainer}>
           <TouchableOpacity 
             style={styles.adminButton}
-            onPress={() => navigation.navigate('AdminHomeScreen')}  
+            onPress={() => navigation.navigate('CreateProductScreen')}  
           >
             <Image 
               style={styles.icon}
