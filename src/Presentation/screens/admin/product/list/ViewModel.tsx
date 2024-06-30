@@ -6,6 +6,7 @@ import { ListProductUseCase } from "../../../../../Domain/useCases/user/ListProd
 import { Category } from "../../../../../Domain/entities/Category";
 import * as yup from "yup";
 import * as ImagePicker from 'expo-image-picker';
+import { RemoveProductUseCase } from "../../../../../Domain/useCases/user/RemoveProductUseCase";
 
 const ListCategoriesScreen = () => {
 
@@ -53,20 +54,41 @@ const ListCategoriesScreen = () => {
     }
   }
 
+  const removeProduct = async () => { 
+    try {
+      const response = await RemoveProductUseCase(idToRemove);
+      console.log(response);
+      showMessage({
+        message: "Producto eliminado con exito",
+        type: "success",
+      });
+      setModalRemoveVisible(false);
+      getProducts();
+    } catch (error) {
+      console.log("Error: ", error
+      );
+    }
+  }
+
+  const handleModalRemove = (visible: boolean, id: number) => {
+    setModalRemoveVisible(visible);
+    setIdToRemove(id);
+  }
+
   const validationChangePasswordSchema = yup.object().shape({
     name: yup.string().required('EL nombres es requerido'),
     description: yup.string().required('La descripción es requerida'),
     image: yup.string().required('Es necesario subir una imagen'),
   });
 
-    const selectImage = async(navigation) => {
+  const selectImage = async(navigation) => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       quality: 1,
       base64: true,
     });
-
+      
     console.log(result);
 
     if (!result.canceled) {
@@ -80,7 +102,11 @@ const ListCategoriesScreen = () => {
 
   return {
     products,
-    getProducts
+    modalRemoveVisible,
+    getProducts,
+    handleModalRemove,
+    removeProduct,
+
   };
 };
 

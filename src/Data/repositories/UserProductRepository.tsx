@@ -60,4 +60,19 @@ export class UserProductRepositoryImpl implements UserProductRepository {
             return Promise.reject(error)
         }
     }
+
+    async remove(id: number): Promise<ResponseAPIDelivery> {
+        try {
+            const path = "/product/delete-product/" + id.toString();
+            console.log("ruta: " + HOST_EMULATOR + path);
+            console.log("Esperando respuesta de: " + HOST_EMULATOR + path);
+            const { data } = await ApiDelivery.delete<ResponseAPIDelivery>(path);
+            console.log("Respuesta recibida del servidor...");
+            return Promise.resolve(data);
+        } catch (error) {
+            console.log("Error: ");
+            console.log(error);
+            return Promise.reject(error)
+        }
+    }
 }

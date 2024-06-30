@@ -7,6 +7,9 @@ export const ListProductsScreen = ({ navigation }) => {
   
   const {
     products,
+    modalRemoveVisible,
+    removeProduct,
+    handleModalRemove,
     getProducts,
     
   } = useViewModel();
@@ -51,6 +54,7 @@ export const ListProductsScreen = ({ navigation }) => {
                 </View>
                 <View style={styles.categoryOptionsContainer}>
                   <TouchableOpacity
+                    onPress={() => handleModalRemove(true, product.id)}
                   >
                     <Image
                       style={ styles.icon}
@@ -70,6 +74,36 @@ export const ListProductsScreen = ({ navigation }) => {
           })}
         </ScrollView>
       </View>
+      {modalRemoveVisible ?
+        <View style={ styles.modal}>
+          <View style={ styles.modalContainer}>
+            <Text style={{ fontSize: 16, textAlign: "center" }}>¿Eliminar Categoría?</Text>
+            <View style={ styles.modalButtons}>
+              <TouchableOpacity
+                onPress={removeProduct}
+                style={ styles.modalAcceptButton}
+              >
+                <Text
+                  style={{color: "white"}}
+                >
+                  Si, eliminar
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => handleModalRemove(false)}
+                style={ styles.modalBackButton}
+              >
+                <Text
+ 
+                >
+                    No, volver
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+        : ""
+      }
     </>
   )
 }

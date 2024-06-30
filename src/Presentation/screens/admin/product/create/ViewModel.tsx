@@ -21,7 +21,8 @@ const CreateCategoryModel = () => {
     name: "",
     price: "",
     description: "",
-    images: []
+    images: [],
+    categoryIds: ""
   });
 
   const onChange = (porperty: string, value: string) => {
