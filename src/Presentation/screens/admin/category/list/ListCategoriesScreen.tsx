@@ -50,8 +50,8 @@ export const ListCategoriesScreen = ({ navigation }) => {
                     />
                   </View>
                   <View style={ styles.categoryContainerText}>
-                      <Text>{category.name}</Text>
-                      <Text>{category.description}</Text>
+                    <Text style={styles.categoryName}>{category.name}</Text>
+                    <Text style={styles.categoryDescription}>{category.description}</Text>
                   </View>
                 </View>
                 <View style={styles.categoryOptionsContainer}>

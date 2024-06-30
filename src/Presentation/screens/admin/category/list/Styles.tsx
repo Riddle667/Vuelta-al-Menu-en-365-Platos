@@ -20,17 +20,19 @@ export const styles = StyleSheet.create({
   },
   categoryContainer: {
     width: '100%',
-    height: 70,
-    backgroundColor: '#E1E1E1',
+    height: "auto",
+    backgroundColor: '#E4E4E4',
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'space-between',
     marginBottom: 10,
     padding: 10,
     borderRadius: 10,
+    elevation: 5,
   },
   image: {
-    width: 60,
-    height: 60,
+    width: 80,
+    height: 80,
     zIndex: 1,
     backgroundColor: 'red',
     borderRadius: 8,
@@ -38,15 +40,24 @@ export const styles = StyleSheet.create({
   categoryContainerText: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     marginLeft: 10,
   },
   categoryOptionsContainer: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    width: '20%',
     justifyContent: 'space-around',
+    width: 70,
+  },
+  categoryName: {
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  categoryDescription: {
+    fontSize: 14,
+    paddingTop: 5,
+    width: 180,
   },
   icon: {
     width: 25,
@@ -61,7 +72,6 @@ export const styles = StyleSheet.create({
   leftSection: {
     display: 'flex',
     flexDirection: 'row',
-    width: '80%',
   },
   modal: {
     position: "absolute",
@@ -78,6 +88,7 @@ export const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 10,
     width: '90%',
+    elevation: 5,
   },
   modalButtons: {
     display: 'flex',
