@@ -11,18 +11,7 @@ export const ProductListScreenClient = ({ navigation }) => {
 
   const {
     products,
-    product,
-    modalRemoveVisible,
-    modalEditVisible,
-    rol,
-    getRol,
-    removeProduct,
-    handleModalRemove,
     getProducts,
-    onChange,
-    handleModalEdit,
-    editProduct,
-    selectImage,
   } = useViewModel();
 
   //  const { shoppingCart, setShoppingCart } = useShoppingCart();
@@ -34,7 +23,6 @@ export const ProductListScreenClient = ({ navigation }) => {
   ]
 
   const [shoppingCart, setShoppingCart] = useState([])
-
   const [active , setActive] = useState(false as boolean)
   const [data, setData] = useState([] as {})
   const [productCounter, setProductCounter] = useState(0)
@@ -65,8 +53,10 @@ export const ProductListScreenClient = ({ navigation }) => {
     // navigation.navigate('ShoppingCartScreen', { "navigation": navigation, "shoppingCart": shoppingCart})
   }
 
+  const handleModalRemove = (visible) => {
+    setModalRemoveVisible(visible)
+  }
   useEffect(() => {
-    getRol();
     getProducts();
   }, [shoppingCart])
 
