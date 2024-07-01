@@ -3,10 +3,11 @@ import { showMessage } from "react-native-flash-message";
 import { ListCategory } from "../../../../../Domain/useCases/user/ListCategoyUseCase";
 import { RemoveCategoryUseCase } from "../../../../../Domain/useCases/user/RemoveCategoryUseCase";
 import { ListProductUseCase } from "../../../../../Domain/useCases/user/ListProductUseCase";
-import { Category } from "../../../../../Domain/entities/Category";
+import { Product } from "../../../../../Domain/entities/Product";
 import * as yup from "yup";
 import * as ImagePicker from 'expo-image-picker';
 import { RemoveProductUseCase } from "../../../../../Domain/useCases/user/RemoveProductUseCase";
+import { EditProductUseCase } from "../../../../../Domain/useCases/user/EditProductUseCase";
 
 const ListCategoriesScreen = () => {
 
@@ -15,18 +16,40 @@ const ListCategoriesScreen = () => {
   const [modalEditVisible, setModalEditVisible] = useState(false);
   const [modalRemoveVisible, setModalRemoveVisible] = useState(false);
   const [errorsMessages, setErrorMessages] = useState<Record<string, string>>({});
-  const [category, setCategory] = useState<Category>({
-    id: -1,
+  const [product, setProduct] = useState<Product>({
     name: "",
     description: "",
-    image: ""
+    images: [],
+    id: -1,
+    price: "",
   });
 
   const onChange = (name: string, value: string) => {
-    setCategory({
-      ...category,
+    setProduct({
+      ...product,
       [name]: value
     });
+  }
+
+  const editProduct = async () => {
+    if (!isValidForm()) { 
+      console.log("Error en el formulario");
+      return;
+    }
+
+    try {
+      const response = await EditProductUseCase(product);
+      console.log(response);
+      showMessage({
+        message: "Producto editado con exito",
+        type: "success",
+      });
+      setModalEditVisible(false);
+      getProducts();
+    } catch (error) {
+      console.log("Error: ", error
+      );
+    }
   }
 
   const getProducts = async () => {
@@ -41,7 +64,7 @@ const ListCategoriesScreen = () => {
   }
   const isValidForm = async (): Promise<boolean> => {
     try {
-      await validationChangePasswordSchema.validate(category, {abortEarly: false});
+      await validationChangePasswordSchema.validate(product, {abortEarly: false});
       return true;
     } catch (error){
       const errors: Record<string, string> = {};
@@ -70,7 +93,7 @@ const ListCategoriesScreen = () => {
     }
   }
 
-  const handleModalRemove = (visible: boolean, id: number) => {
+  const handleModalRemove = (visible: boolean, id?: number) => {
     setModalRemoveVisible(visible);
     setIdToRemove(id);
   }
@@ -88,28 +111,36 @@ const ListCategoriesScreen = () => {
       quality: 1,
       base64: true,
     });
-      
+    
+
     console.log(result);
 
-    if (!result.canceled) {
-      // const exists = await RNFS.exists(result.assets[0].uri);
-      setCategory({ ...category, ["image"]: "data:image/png;base64," + result.assets[0].base64});
-    } else {
-      setCategory({ ...category, ["image"]: "123" });
-    }
+    // if (!result.canceled) {
+    //   // const exists = await RNFS.exists(result.assets[0].uri);
+    //   setProduct({ ...product, ["image"]: "data:image/png;base64," + result.assets[0].base64});
+    // } else {
+    //   setProduct({ ...product, ["image"]: "123" });
+    // }
   }
 
+  const handleModalEdit = (visible: boolean, product?: Product) => {
+    setModalEditVisible(visible);
+    setProduct(product);
+  }
 
   return {
     products,
     modalRemoveVisible,
+    modalEditVisible,
+    product,
     getProducts,
     handleModalRemove,
     removeProduct,
-
+    onChange,
+    handleModalEdit,
+    editProduct,
+    selectImage,
   };
 };
-
-
 
 export default ListCategoriesScreen; 

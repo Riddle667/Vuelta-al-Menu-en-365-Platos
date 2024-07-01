@@ -75,4 +75,30 @@ export class UserProductRepositoryImpl implements UserProductRepository {
             return Promise.reject(error)
         }
     }
+
+    async edit(product: Product): Promise<ResponseAPIDelivery> {
+
+        const { getItem } = LocalStorage();
+
+        try {
+
+            const productData = {
+                name: product.name,
+                description: product.description,
+                price: product.price
+            };
+
+            const path = "category/update-category/" + product.id;
+            console.log("ruta: " + HOST_EMULATOR + path);
+            console.log("Esperando respuesta de: " + HOST_EMULATOR + path);
+            ApiDelivery.defaults.headers.common['Authorization'] = "Bearer " + await getItem("token");
+            const { data } = await ApiDelivery.put<ResponseAPIDelivery>(path, productData);
+            console.log("Respuesta recibida del servidor...");
+            return Promise.resolve(data);
+        } catch (error) {
+            console.log("Error: ");
+            console.log(error);
+            return Promise.reject(error)
+        }
+    }
 }

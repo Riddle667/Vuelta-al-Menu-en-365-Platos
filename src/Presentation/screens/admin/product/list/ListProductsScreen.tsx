@@ -7,14 +7,19 @@ export const ListProductsScreen = ({ navigation }) => {
   
   const {
     products,
+    product,
     modalRemoveVisible,
+    modalEditVisible,
     removeProduct,
     handleModalRemove,
     getProducts,
+    onChange,
+    handleModalEdit,
+    editProduct,
+    selectImage
     
   } = useViewModel();
   
-  console.log(products[0])
   useEffect(() => {
     getProducts();
   }, []);
@@ -22,10 +27,10 @@ export const ListProductsScreen = ({ navigation }) => {
   return (
     <>
       <View style={styles.container}>
-        <Text style={styles.title}> Lista de Categorias </Text>
+        <Text style={styles.title}> Lista de Productos </Text>
         <ScrollView style={styles.categoryListContainer}>
           {products.length == 0 ?
-            <Text style={ styles.noData }>No hay categorias</Text>
+            <Text style={ styles.noData }>No hay Productos</Text>
             :
             ""
           }
@@ -62,6 +67,13 @@ export const ListProductsScreen = ({ navigation }) => {
                       />
                   </TouchableOpacity>
                   <TouchableOpacity
+                    onPress={() => handleModalEdit(true, {
+                      id: product.id,
+                      name: product.name,
+                      description: product.description,
+                      price: product.price,
+                      images: []
+                    })}
                   >
                     <Image
                       style={ styles.icon}
@@ -94,9 +106,81 @@ export const ListProductsScreen = ({ navigation }) => {
                 style={ styles.modalBackButton}
               >
                 <Text
- 
                 >
                     No, volver
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+        : ""
+      }
+      {modalEditVisible ?
+        <View style={ styles.modal}>
+          <View style={ styles.modalContainer}>
+            <Text style={{ fontSize: 16, textAlign: "center" }}>Editar Categoría</Text>
+            <View>
+              <View style={styles.textInputContainer}>
+                <Text style={ styles.InputText}>Nombre</Text>
+                <TextInput
+                  style={styles.inputTextArea}
+                  placeholder='Nombre del producto'
+                  onChangeText={(text) => onChange("name", text)}
+                >
+                  {product.name}
+                </TextInput>
+              </View>
+              <View style={styles.textInputContainer}>
+                <Text style={ styles.InputText}>Descripción</Text>
+                <TextInput
+                  style={styles.inputTextArea}
+                  placeholder='Descripción del producto'
+                  onChangeText={(text) => onChange("description", text)}
+                >
+                {product.description}
+                </TextInput>
+              </View>
+              <View style={styles.textInputContainer}>
+                <Text style={ styles.InputText}>precio</Text>
+                <TextInput
+                  style={styles.inputTextArea}
+                  placeholder='precio del producto'
+                  onChangeText={(text) => onChange("price", text)}
+                >
+                {product.price}
+                </TextInput>
+              </View>
+              <View>
+                <TouchableOpacity 
+                  style={styles.imageButton}
+                  onPress={selectImage}  
+                >
+                  <Text style={styles.imageButtonText}>Seleccionar Imagen</Text>
+                </TouchableOpacity>
+                <Image
+                  style={styles.editImage}
+                  // source={{uri: (image == "") ? 'https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg' : image}}
+                />
+              </View>
+            </View>
+            <View style={styles.modalButtons}>
+              <TouchableOpacity
+                onPress={editProduct}
+                style={ styles.modalAcceptButton}
+              >
+                <Text
+                  style={{color: "white"}}
+                >
+                  Confirmar cambios
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => handleModalEdit(false)}
+                style={ styles.modalBackButton}
+              >
+                <Text
+                >
+                    Descartar cambios
                 </Text>
               </TouchableOpacity>
             </View>

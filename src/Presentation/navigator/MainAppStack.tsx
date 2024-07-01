@@ -7,7 +7,7 @@ import { CreateCategoryScreen } from '../screens/admin/category/create/CreateCat
 import { ListCategoriesScreen } from '../screens/admin/category/list/ListCategoriesScreen'
 import { ChangePasswordScreen } from '../screens/common/change_password/ChangePasswordScreen'
 import { CreateProductScreen } from '../screens/admin/product/create/CreateProductScreen'
-import { ListProductsScreen } from '../screens/admin/product/list/ListCategoriesScreen'
+import { ListProductsScreen } from '../screens/admin/product/list/ListProductsScreen'
 
 export type RootStackParamsList = {
   LoginScreen: undefined,
