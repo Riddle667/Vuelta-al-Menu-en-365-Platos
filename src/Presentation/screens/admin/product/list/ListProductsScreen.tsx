@@ -4,24 +4,27 @@ import { styles } from './Styles';
 import useViewModel from './ViewModel';
 
 export const ListProductsScreen = ({ navigation }) => {
-  
+
   const {
     products,
     product,
     modalRemoveVisible,
     modalEditVisible,
+    rol,
+    getRol,
     removeProduct,
     handleModalRemove,
     getProducts,
     onChange,
     handleModalEdit,
     editProduct,
-    selectImage
+    selectImage,
     
   } = useViewModel();
   
   useEffect(() => {
     getProducts();
+    getRol();
   }, []);
 
   return (
@@ -57,30 +60,32 @@ export const ListProductsScreen = ({ navigation }) => {
                     <Text style={styles.categoryDescription}>{product.price}</Text>
                   </View>
                 </View>
-                <View style={styles.categoryOptionsContainer}>
-                  <TouchableOpacity
-                    onPress={() => handleModalRemove(true, product.id)}
-                  >
-                    <Image
-                      style={ styles.icon}
-                      source={require('../../../../../../assets/basurero.png')}
+                {rol == "1" ?
+                  <View style={styles.categoryOptionsContainer}>
+                    <TouchableOpacity
+                      onPress={() => handleModalRemove(true, product.id)}
+                    >
+                      <Image
+                        style={styles.icon}
+                        source={require('../../../../../../assets/basurero.png')}
                       />
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => handleModalEdit(true, {
-                      id: product.id,
-                      name: product.name,
-                      description: product.description,
-                      price: product.price,
-                      images: []
-                    })}
-                  >
-                    <Image
-                      style={ styles.icon}
-                      source={require('../../../../../../assets/boligrafo.png')}
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => handleModalEdit(true, {
+                        id: product.id,
+                        name: product.name,
+                        description: product.description,
+                        price: product.price,
+                        images: []
+                      })}
+                    >
+                      <Image
+                        style={styles.icon}
+                        source={require('../../../../../../assets/boligrafo.png')}
                       />
-                  </TouchableOpacity> 
-                </View>
+                    </TouchableOpacity>
+                  </View>
+          : ""}
               </View>
             )
           })}

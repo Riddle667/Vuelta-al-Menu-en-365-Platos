@@ -3,6 +3,7 @@ import * as yup from 'yup';
 import { LoginAuthUseCase } from "../../../Domain/useCases/Auth/LoginAuth";
 import { SaveUserUseCase } from "../../../Domain/useCases/UserLocal/SaveUserUseCase";
 import { AuthContext } from "../../context/auth/AuthContext";
+import { LocalStorage } from "../../../Data/sources/local/LocalStorage";
 
 interface Values{
     email: string,
@@ -22,7 +23,7 @@ const validationLoginSchema = yup.object().shape({
 
 const LoginViewModel = () => {
 
-
+    const {save} = LocalStorage();
     const {auth}  = useContext(AuthContext);
 
     const [values, setValues] = useState({
@@ -50,6 +51,7 @@ const LoginViewModel = () => {
                 const response = await LoginAuthUseCase(values.email, values.password);
                 console.log(response);
                 console.log(response.data.role_id);
+                save("rol", response.data.role_id.toString())
                 switch (response.data.role_id) {
                     case 1:
                         console.log("Administrador")
@@ -60,6 +62,7 @@ const LoginViewModel = () => {
                         break;
                     case 3:
                         console.log("Cliente")
+                        navigation.navigate("ClientHomeScreen");
                         break;
                     default:
                         break;

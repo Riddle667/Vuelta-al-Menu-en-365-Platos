@@ -8,9 +8,13 @@ import * as yup from "yup";
 import * as ImagePicker from 'expo-image-picker';
 import { RemoveProductUseCase } from "../../../../../Domain/useCases/user/RemoveProductUseCase";
 import { EditProductUseCase } from "../../../../../Domain/useCases/user/EditProductUseCase";
+import { LocalStorage } from '../../../../../Data/sources/local/LocalStorage';
+
+
 
 const ListCategoriesScreen = () => {
 
+  const [rol, setRol] = useState("" as string);
   const [products, setProducts] = useState([]);
   const [idToRemove, setIdToRemove] = useState(0);
   const [modalEditVisible, setModalEditVisible] = useState(false);
@@ -23,6 +27,8 @@ const ListCategoriesScreen = () => {
     id: -1,
     price: "",
   });
+
+  const { getItem } = LocalStorage()
 
   const onChange = (name: string, value: string) => {
     setProduct({
@@ -50,6 +56,10 @@ const ListCategoriesScreen = () => {
       console.log("Error: ", error
       );
     }
+  }
+
+  const getRol = async () => {
+    setRol(await getItem("rol"));
   }
 
   const getProducts = async () => {
@@ -133,6 +143,7 @@ const ListCategoriesScreen = () => {
     modalRemoveVisible,
     modalEditVisible,
     product,
+    rol,
     getProducts,
     handleModalRemove,
     removeProduct,
@@ -140,6 +151,7 @@ const ListCategoriesScreen = () => {
     handleModalEdit,
     editProduct,
     selectImage,
+    getRol
   };
 };
 
