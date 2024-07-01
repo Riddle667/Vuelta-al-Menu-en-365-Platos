@@ -10,7 +10,7 @@ export const ClientHomeScreen = ({navigation}) => {
         <View style={styles.buttonContainer}>
           <TouchableOpacity 
             style={styles.adminButton}
-            onPress={() => navigation.navigate('ListProductsScreen', false)}  
+            onPress={() => navigation.navigate('ProductListScreenClient')}  
           >
             <Image 
               style={styles.icon}
@@ -25,7 +25,7 @@ export const ClientHomeScreen = ({navigation}) => {
         <View style={styles.buttonContainer}>
           <TouchableOpacity 
             style={styles.adminButton}
-            onPress={() => navigation.navigate('ChangePasswordScreen')}  
+            onPress={() => navigation.navigate('ChangePasswordScreenClient')}  
           >
             <Image 
               style={styles.icon}

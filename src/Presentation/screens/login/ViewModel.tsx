@@ -52,6 +52,7 @@ const LoginViewModel = () => {
                 console.log(response);
                 console.log(response.data.role_id);
                 save("rol", response.data.role_id.toString())
+                setValues({email: '', password: ''});
                 switch (response.data.role_id) {
                     case 1:
                         console.log("Administrador")
@@ -62,7 +63,7 @@ const LoginViewModel = () => {
                         break;
                     case 3:
                         console.log("Cliente")
-                        navigation.navigate("ProductListScreenClient");
+                        navigation.navigate("ClientHomeScreen");
                         break;
                     default:
                         break;

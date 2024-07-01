@@ -11,6 +11,7 @@ import { ListProductsScreen } from '../screens/admin/product/list/ListProductsSc
 import { ClientHomeScreen }  from '../screens/client/home/ClientHomeScreen'
 import { ProductListScreenClient} from '../screens/client/product_list/ProductListScreenClient'
 import { ShoppingCartScreen }   from '../screens/client/shopping_cart/ShoppingCartScreen'
+import { ChangePasswordScreenClient } from '../screens/client/change_password/ChangePasswordScreenClient'
 
 export type RootStackParamsList = {
   LoginScreen: undefined,
@@ -25,7 +26,8 @@ export type RootStackParamsList = {
   ListProductsScreen: undefined
   ClientHomeScreen: undefined
   ProductListScreenClient: undefined,
-  ShoppingCartScreen: undefined
+  ShoppingCartScreen: undefined,
+  ChangePasswordScreenClient: undefined
 }
 
 const Stack = createStackNavigator<RootStackParamsList>();
@@ -50,6 +52,7 @@ export const MainAppStack = () => {
       <Stack.Screen name="ClientHomeScreen" component={ClientHomeScreen} />
       <Stack.Screen name="ProductListScreenClient" component={ProductListScreenClient} />
       <Stack.Screen name="ShoppingCartScreen" component={ShoppingCartScreen} />
+      <Stack.Screen name="ChangePasswordScreenClient" component={ChangePasswordScreenClient} />
     </Stack.Navigator>
   );
 }
