@@ -46,14 +46,15 @@ export const ProductListScreenClient = ({ navigation }) => {
   }
 
   const addProduct = (data, amount) => {
-    // const exists = shoppingCart.some((product) => {
-    //   if (product.name == data.name) {
-    //     product.amount += amount
-    //     return true
-    //   }
-    // });
-    // exists ? "" : setShoppingCart([...shoppingCart, { ...data, amount }])
-    // console.log("shoppingCart: ", shoppingCart)
+    setProductCounter(counter => counter + 1)
+    const exists = shoppingCart.some((product) => {
+      if (product.name == data.name) {
+        product.amount += amount
+        return true
+      }
+    });
+    exists ? "" : setShoppingCart([...shoppingCart, { ...data, amount }])
+    console.log("shoppingCart: ", shoppingCart)
   }
 
   const handleCartOpen = () => {
@@ -65,7 +66,6 @@ export const ProductListScreenClient = ({ navigation }) => {
   }
 
   useEffect(() => {
-    setProductCounter(shoppingCart.length);
     getRol();
     getProducts();
   }, [shoppingCart])
@@ -115,7 +115,7 @@ export const ProductListScreenClient = ({ navigation }) => {
                 </View>
                 <View>
                   <TouchableOpacity
-                    onPress={() => setShoppingCart([...shoppingCart, product])}
+                    onPress={() => addProduct(product, 1)}
                   >
                     <Ionicons name="add" color="grey" size={30} />
                   </TouchableOpacity>
@@ -125,7 +125,7 @@ export const ProductListScreenClient = ({ navigation }) => {
           })}
         </ScrollView>
       </View>
-      {cartOpen ? <ShoppingCartScreen navigation={navigation} setCartOpen={setCartOpen} shoppingCart={shoppingCart}/>: "" }
+      {cartOpen ? <ShoppingCartScreen setProductCounter={setProductCounter} setShoppingCart={setShoppingCart} navigation={navigation} setCartOpen={setCartOpen} shoppingCart={shoppingCart}/>: "" }
       <VisualizeProductDetailScreen navigation={navigation} active={active} setActive={setActive} data={data} expanded={true} addProduct={addProduct}></VisualizeProductDetailScreen>
     </>
   )

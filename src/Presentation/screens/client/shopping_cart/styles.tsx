@@ -2,27 +2,23 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   product: {
-    width: 150,
-    height: 150,
+    width: 110,
+    height: 110,
     backgroundColor: '#D1D1D1',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignItems: 'center',
     borderRadius: 5,
   },
     productContainer: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'stretch',
-    marginTop: 10,
+    justifyContent: 'space-around',
+    alignItems: 'center',
     backgroundColor: 'white',
     elevation: 5,  
     padding: 10,
     borderRadius: 10,
     width: 310,
-    height: 170,
+      height: 170,
+    margin: 10,
   },
   productSection: {
     display: 'flex',
@@ -32,7 +28,6 @@ export const styles = StyleSheet.create({
     height: '100%',
     paddingTop: 100,
     paddingLeft: 50,
-    paddingBottom: 50,
   },
   productTextContainer: {
     textAlign: "center",
