@@ -70,19 +70,6 @@ export const AdminHomeScreen = ({navigation}) => {
             <Text style={styles.adminButtonText}>Cambiar Contraseña</Text>
           </TouchableOpacity>
         </View>
-
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity 
-            style={styles.adminButton}
-            onPress={() => navigation.navigate('ProductListScreen')}  
-          >
-            <Image 
-              style={styles.icon}
-              source={require('../../../../../assets/password-icon.png')}
-            />
-            <Text style={styles.adminButtonText}>Detalle de Prodcuto</Text>
-          </TouchableOpacity>
-        </View>
       </View>
     </View>
   )

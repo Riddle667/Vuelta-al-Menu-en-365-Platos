@@ -36,8 +36,10 @@ export const styles = StyleSheet.create({
     marginLeft: 10,
   },
   productTitleText: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: "bold",
+    width: 160,
+    height: 40,
   },
   productText: {
 
@@ -102,5 +104,16 @@ export const styles = StyleSheet.create({
   payText: {
     color: 'white',
     textAlign: 'center',
-  }
+  },
+    noData: {
+    width: '90%',
+    height: '100%',
+    textAlign: 'center',
+    marginTop: 200,
+    fontSize: 20,
+    color: "#B1B1B1",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });

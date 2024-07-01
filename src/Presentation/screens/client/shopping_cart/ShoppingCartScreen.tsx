@@ -50,13 +50,18 @@ export const ShoppingCartScreen = ({ navigation, shoppingCart, setCartOpen, setS
             </View>
           )
         })}
-      <View>
+        {shoppingCart.length == 0
+          ?
+          <View>
+            <Text style={ styles.noData }>No hay Productos</Text>
+          </View>
+          : <View>
           <TouchableOpacity style={ styles.payButton}>
             <Text style={ styles.payText}>
           Continuar con el pago
           </Text>
         </TouchableOpacity>
-      </View>
+      </View>}
       </ScrollView>
       {modalRemoveVisible.visible ?
         <View style={ styles.modal}>

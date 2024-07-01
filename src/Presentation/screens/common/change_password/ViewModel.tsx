@@ -54,7 +54,7 @@ const ChangePasswordModel = () => {
           showMessage({
             message: "Contraseña Acualizada",
             type: "success",
-            icon: "success"
+            icon: "success",
           })
           navigation.navigate("AdminHomeScreen");
         }

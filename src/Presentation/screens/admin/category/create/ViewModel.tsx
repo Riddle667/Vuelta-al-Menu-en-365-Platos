@@ -78,7 +78,9 @@ const CreateCategoryModel = () => {
           showMessage({
             message: "Error al crear la categoría",
             type: "danger",
-            icon: "danger"
+            icon: "danger",
+            duration: 5000,
+            style: {top: 200}
           })
         }
       }catch (error){
