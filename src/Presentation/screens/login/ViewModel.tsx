@@ -62,7 +62,7 @@ const LoginViewModel = () => {
                         break;
                     case 3:
                         console.log("Cliente")
-                        navigation.navigate("ClientHomeScreen");
+                        navigation.navigate("ProductListScreenClient");
                         break;
                     default:
                         break;

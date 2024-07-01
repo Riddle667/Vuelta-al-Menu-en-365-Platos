@@ -30,6 +30,7 @@ export const ListProductsScreen = ({ navigation }) => {
   return (
     <>
       <View style={styles.container}>
+        
         <Text style={styles.title}> Lista de Productos </Text>
         <ScrollView style={styles.categoryListContainer}>
           {products.length == 0 ?

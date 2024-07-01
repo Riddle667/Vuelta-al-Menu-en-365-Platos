@@ -2,8 +2,8 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   product: {
-    width: 180,
-    height: 180,
+    width: 150,
+    height: 150,
     backgroundColor: '#D1D1D1',
     display: 'flex',
     flexDirection: 'column',
@@ -21,14 +21,18 @@ export const styles = StyleSheet.create({
     elevation: 5,  
     padding: 10,
     borderRadius: 10,
-    width: '80%',
-    height: 200,
+    width: 310,
+    height: 170,
   },
   productSection: {
     display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
     width: '100%',
+    position: 'absolute',
+    backgroundColor: 'white',
+    height: '100%',
+    paddingTop: 100,
+    paddingLeft: 50,
+    paddingBottom: 50,
   },
   productTextContainer: {
     textAlign: "center",
@@ -54,4 +58,7 @@ export const styles = StyleSheet.create({
     marginTop: 20,
     marginLeft: 10
   },
+  goBackIcon: {
+    marginBottom: 20,
+  }
 });

@@ -1,24 +1,27 @@
-import { View,Text, TouchableOpacity } from 'react-native';
+import { View,Text, TouchableOpacity, ScrollView } from 'react-native';
 import { styles } from './styles';
 import { useState } from 'react';
 import { FlatList } from 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
 import { useShoppingCart } from '../../../context/shopping_cart/ShoppingCartContext';
 
-export const ShoppingCartScreen = ({ route }) => {
+export const ShoppingCartScreen = ({ navigation, shoppingCart, setCartOpen }) => {
 
-  const { shoppingCart, handleRemoveProduct } = useShoppingCart();
-
-  // const [ shoppingCartData, setShoppingCartData ] = useState(shoppingCart)
-
-  console.log("asd: " + shoppingCart)
+  const handleClose = () => { 
+    setCartOpen(false)
+  }
 
   return (
     <>
-      <View style={styles.productSection}>
+      <ScrollView style={styles.productSection}>
+        <View style={ styles.goBackIcon}>
+          <TouchableOpacity onPress={handleClose}>
+            <Ionicons name="arrow-back" size={30} color="black" />
+          </TouchableOpacity>
+        </View>
         {shoppingCart.map((product) => { 
           return (
-            <View style={styles.productContainer}>
+            <View key={ product.id} style={styles.productContainer}>
               <View style={styles.product} />
               <View>
                 <View style={ styles.productTextContainer}>
@@ -28,7 +31,7 @@ export const ShoppingCartScreen = ({ route }) => {
                 </View>
                 <View
                   style={styles.cartContainer}
-                  onTouchStart={() => handleRemoveProduct(product.name)}
+                  // onTouchStart={() => handleRemoveProduct(product.name)}
                 >
                   <Ionicons name="trash" color="white" size={20} />
               </View>
@@ -36,7 +39,7 @@ export const ShoppingCartScreen = ({ route }) => {
             </View>
           )
         })}
-      </View>
+      </ScrollView>
     </>
   );
 };

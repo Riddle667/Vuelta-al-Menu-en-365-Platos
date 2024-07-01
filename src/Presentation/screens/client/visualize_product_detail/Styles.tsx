@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { ProductListScreen } from '../product_list/ProductListScreen';
+import { ProductListScreen } from '../product_list/ProductListScreenClient';
 
 export const styles = StyleSheet.create({
   modal: {
