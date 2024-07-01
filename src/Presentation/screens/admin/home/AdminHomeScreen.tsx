@@ -32,7 +32,7 @@ export const AdminHomeScreen = ({navigation}) => {
             <Text style={styles.adminButtonText}>Listar Productos</Text>
           </TouchableOpacity>
         </View>
-        
+        <View style={ styles.divisor}/>
         <View style={styles.buttonContainer}>
           <TouchableOpacity 
             style={styles.adminButton}
@@ -54,9 +54,10 @@ export const AdminHomeScreen = ({navigation}) => {
               style={styles.icon}
               source={require('../../../../../assets/category-icon.png')}
             />
-            <Text style={styles.adminButtonText}>Ver Categorías</Text>
+            <Text style={styles.adminButtonText}>Listar Categorías</Text>
           </TouchableOpacity>
         </View>
+        <View style={ styles.divisor}/>
         <View style={styles.buttonContainer}>
           <TouchableOpacity 
             style={styles.adminButton}

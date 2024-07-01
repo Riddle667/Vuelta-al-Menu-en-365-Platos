@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   container:{
     height: '100%',
+    marginTop: 50,
   },
   form: {
     display: 'flex',
@@ -43,5 +44,11 @@ export const styles = StyleSheet.create({
     color: '#FFFFFF',
     padding: 5,
     fontSize: 24,
+  },
+  divisor: {
+    width: '100%',
+    height: 1,
+    backgroundColor: '#B1B1B1',
+    marginBottom: 20,
   }
 });
